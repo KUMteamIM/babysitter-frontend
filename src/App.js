@@ -13,6 +13,10 @@ function App() {
           Hello
         </CommonNavbar>
       </header>
+      <div className='container'>
+          <h1>Babysitterbrösel</h1>
+          <p>Welcome</p>
+      </div>
       <CommonFooter />
       <CommonCookieNotice />
     </div>
