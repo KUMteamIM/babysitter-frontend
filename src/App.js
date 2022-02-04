@@ -4,6 +4,8 @@ import '@lmu-med/styles/dist/lmu.css'
 import {CommonNavbar} from '@lmu-med/ci-components';
 import {CommonFooter} from '@lmu-med/ci-components';
 import {CommonCookieNotice} from '@lmu-med/ci-components';
+import ContentContainer from './components/ContentContainer';
+import { faQuestion } from "@fortawesome/free-solid-svg-icons";
 
 function App() {
   return (
@@ -14,8 +16,9 @@ function App() {
         </CommonNavbar>
       </header>
       <div className='container'>
-          <h1>Babysitterbrösel</h1>
-          <p>Welcome</p>
+        <ContentContainer title='Babysitterbrösel' icon={faQuestion}>
+        <p>Welcome</p>
+        </ContentContainer>
       </div>
       <CommonFooter />
       <CommonCookieNotice />

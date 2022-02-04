@@ -4,6 +4,11 @@
   "private": true,
   "dependencies": {
     "@fontsource/roboto": "^4.5.2",
+    "@fortawesome/fontawesome-svg-core": "^1.2.36",
+    "@fortawesome/free-brands-svg-icons": "^5.15.4",
+    "@fortawesome/free-regular-svg-icons": "^5.15.4",
+    "@fortawesome/free-solid-svg-icons": "^5.15.4",
+    "@fortawesome/react-fontawesome": "^0.1.17",
     "@lmu-med/ci-components": "^0.1.7",
     "@lmu-med/styles": "^0.1.6",
     "@testing-library/jest-dom": "^5.16.2",
@@ -38,5 +43,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "sass": "^1.49.7"
   }
 }

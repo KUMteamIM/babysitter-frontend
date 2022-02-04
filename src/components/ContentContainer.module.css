@@ -1,0 +1,19 @@
+@import "../css/colors.scss";
+
+.content {
+  display: flex;
+  align-items: center;
+}
+h2,
+.icon {
+  margin-left: 20px;
+}
+.confirmed {
+  background-color: $yellow;
+}
+.requested {
+  background-color: $grey;
+}
+.free {
+  background-color: white;
+}
