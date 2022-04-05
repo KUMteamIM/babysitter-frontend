@@ -1,0 +1,15 @@
+{
+  "user": {
+    "data": {
+      "id":"9",
+      "title":null,
+      "first_name":"Cloud",
+      "last_name":"Strife",
+      "status":"member",
+      "email":"user3@it-ref.de",
+      "location":{"city":"München","fax":null,"geo_code":"48.1452183,11.5836608","message":null,"postal_code":"80539","phone":null,"street":"Königinstraße 5","clinic_name":"Dr.Maus","clinic_email":null,"show_in_map":true,"show_contact_details":true,"website":null},
+      "rights":[]
+    }
+  },
+  "jwt": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo5fQ.3G4pnsXvks7prDS_IKL0DmIB9oNdINSNdPkj1tyVU9Y"
+}
