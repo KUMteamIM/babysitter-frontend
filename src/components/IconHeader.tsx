@@ -1,17 +1,19 @@
 import React from "react";
-import { IconName } from "@fortawesome/fontawesome-svg-core"
+import { IconProp } from "@fortawesome/fontawesome-svg-core"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 interface PropDefs {
-  icon: IconName,
-  children?: object[],
+  icon: IconProp,
+  title?: string,
+  link?: object,
 }
 
-export const IconHeader = ({icon, children}:PropDefs) => {
+export const IconHeader = ({icon, title, link}:PropDefs) => {
   return (
     <h2>
-      <FontAwesomeIcon icon={icon} transform="shrink-5"></FontAwesomeIcon>
-      {children}
+      <FontAwesomeIcon icon={icon} transform="shrink-6"></FontAwesomeIcon>
+      {title}
+      {link ? link : ''}
     </h2>
   )
 }

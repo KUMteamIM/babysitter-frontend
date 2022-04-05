@@ -1,0 +1,13 @@
+body.lmu-klinikum {
+  .content-container {
+    .contents {
+      background-color: $light-green;
+      min-height: 200px;
+    }
+    h2 a {
+      font-size: .8rem;
+      float: right;
+      text-decoration: underline;
+    }
+  }
+}

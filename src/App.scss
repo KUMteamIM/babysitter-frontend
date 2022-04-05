@@ -1,7 +1,21 @@
 @import "css/colors.scss";
 @import "css/header.scss";
+@import "css/content_container.scss";
 
 body {
   font-family: 'Roboto';
-  color: $text
+  color: $text;
+  footer {
+    background-color: $grey !important;
+    color: #666 !important;
+  }
+}
+
+.login-form {
+  padding-top: 10vh;
+  margin-bottom: 10vh;
+  .logo {
+    width: 100%;
+    height: auto;
+  }
 }
