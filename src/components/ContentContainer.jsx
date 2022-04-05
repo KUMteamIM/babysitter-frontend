@@ -1,16 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import styles from "./ContentContainer.module.css"; // Import css modules stylesheet as styles
-const ContentContainer = ({ icon, title, children, contentStyle }) => {
+import { IconHeader } from "./IconHeader";
+import Col from "react-bootstrap/Col";
+
+const ContentContainer = ({ icon, title, children }) => {
   return (
-    <div className="content-container">
-      <div className={styles.content}>
-        <FontAwesomeIcon icon={icon} />
-        <h2>{title}</h2>
-      </div>
-      <div className={styles.requested}>{children}</div>
-    </div>
+    <Col sm={6}>
+      <IconHeader icon={icon}>{title}</IconHeader>
+      {children}
+    </Col>
   );
 };
 

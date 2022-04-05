@@ -1,25 +1,36 @@
 import React from 'react';
-import './App.css';
+import './App.scss';
 import '@lmu-med/styles/dist/lmu.css'
-import {CommonNavbar} from '@lmu-med/ci-components';
-import {CommonFooter} from '@lmu-med/ci-components';
-import {CommonCookieNotice} from '@lmu-med/ci-components';
+import { CommonNavbar } from '@lmu-med/ci-components';
+import { CommonFooter } from '@lmu-med/ci-components';
+import { CommonCookieNotice } from '@lmu-med/ci-components';
 import ContentContainer from './components/ContentContainer';
-import { faQuestion } from "@fortawesome/free-solid-svg-icons";
+import logo from './assets/logo1.png';
+import Row from 'react-bootstrap/Row';
+import Container from 'react-bootstrap/Container';
+import { faBabyCarriage } from '@fortawesome/free-solid-svg-icons';
+import { faEdge } from '@fortawesome/free-brands-svg-icons';
 
 function App() {
   return (
     <div className="App">
       <header>
-        <CommonNavbar>
-          Hello
+        <CommonNavbar logo={logo}>
+
         </CommonNavbar>
       </header>
-      <div className='container'>
-        <ContentContainer title='Babysitterbrösel' icon={faQuestion}>
+      <Container>
+
+      <Row>
+        <ContentContainer title='Babysitterbrösel' icon={faBabyCarriage}>
         <p>Welcome</p>
         </ContentContainer>
-      </div>
+        <ContentContainer title='Rechte Spalte' icon={faEdge}>
+          Edit
+        </ContentContainer>
+      </Row>
+      </Container>
+
       <CommonFooter />
       <CommonCookieNotice />
     </div>
