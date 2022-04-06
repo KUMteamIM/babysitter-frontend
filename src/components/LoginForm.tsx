@@ -29,9 +29,9 @@ function LoginForm() {
 
     logIn({ email, password })
       .then((user) => {
-        console.log(user)
+        console.log(user.data.data)
         setCookie("inSession", "true");
-        dispatch(updateCurrentUser(user));
+        dispatch(updateCurrentUser(user.data.data));
       })
       .catch(onError);
   };

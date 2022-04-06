@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './App.scss';
 import '@lmu-med/styles/dist/lmu.css'
 import { CommonFooter } from '@lmu-med/ci-components';
@@ -8,8 +8,13 @@ import { store } from './redux/store';
 import { Provider } from 'react-redux';
 import { AppContent } from './components/AppContent';
 import { AppHeader } from './components/AppHeader';
+import { checkForUserInSession } from './api/login';
 
 function App() {
+  useEffect(() => {
+    checkForUserInSession()
+  }, []);
+
   return (
     <Provider store={store}>
       <Router>

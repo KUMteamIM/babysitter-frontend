@@ -46,7 +46,7 @@ export const checkForUserInSession = async () => {
   return new Promise((resolve, reject) => {
     currentUserSession()
       .then((res) => {
-        store.dispatch(updateCurrentUser(res));
+        store.dispatch(updateCurrentUser(res.data.data));
         resolve(res);
       })
       .catch(reject);

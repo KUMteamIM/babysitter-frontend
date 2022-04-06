@@ -1,10 +1,11 @@
 import React from 'react';
-import { faEdge } from '@fortawesome/free-brands-svg-icons';
 import { faBabyCarriage } from '@fortawesome/free-solid-svg-icons';
 import { useCurrentUser } from './../custom_hooks/user';
-import { Link } from 'react-router-dom';
+import { Link, Routes, Route } from 'react-router-dom';
 import ContentContainer from './ContentContainer';
 import LoginForm from './LoginForm';
+import { JobIndex } from './jobs/JobIndex';
+import { Home } from './Home';
 
 export const Routing = () => {
   const currentUser = useCurrentUser()
@@ -14,9 +15,12 @@ export const Routing = () => {
       {!currentUser ? (
         <LoginForm/>
       ) : (
-        <ContentContainer title='Babysitterbrösel' icon={faBabyCarriage} link={<Link to="/bookings">I am a link</Link>}>
-          <p>Welcome</p>
-        </ContentContainer>
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/jobs' element={<JobIndex />} />
+          <Route path='/jobs/:id' element={<JobIndex />} />
+          <Route path='/jobs/:id' element={<JobIndex />} />
+        </Routes>
       )}
     </React.Fragment>
   )
