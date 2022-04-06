@@ -9,6 +9,7 @@ import { Provider } from 'react-redux';
 import { AppContent } from './components/AppContent';
 import { AppHeader } from './components/AppHeader';
 import { checkForUserInSession } from './api/login';
+import './i18n'
 
 function App() {
   useEffect(() => {

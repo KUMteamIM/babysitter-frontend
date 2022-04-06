@@ -4,4 +4,35 @@ body.lmu-klinikum header {
     height: 80px !important;
     padding: 0 !important;
   }
+
+  .navbar-profile {
+    .small {
+      color: $green;
+      font-size: .7em;
+      text-transform: uppercase;
+    }
+  }
+  .justify-content-end {
+    justify-content: space-between !important;
+    align-items: flex-end;
+    background-color: $light-grey;
+    height: 80px;
+  }
+  .navbar-links {
+    display: flex;
+    list-style-type: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+
+    .navbar-link {
+      padding: 5px 10px;
+      background-color: #ececec;
+      margin: 0;
+      margin-right: 6px;
+    }
+    .navbar-link:hover, .navbar-link.active {
+      background-color: white;
+      cursor: pointer;
+    }
+  }
 }

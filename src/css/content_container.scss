@@ -3,7 +3,9 @@ body.lmu-klinikum {
     .contents {
       background-color: $light-green;
       min-height: 200px;
+      border-radius: 2px;
     }
+
     h2 a {
       font-size: .8rem;
       float: right;

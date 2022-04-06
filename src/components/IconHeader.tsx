@@ -11,7 +11,7 @@ interface PropDefs {
 export const IconHeader = ({icon, title, link}:PropDefs) => {
   return (
     <h2>
-      <FontAwesomeIcon icon={icon} transform="shrink-6"></FontAwesomeIcon>
+      <FontAwesomeIcon icon={icon} transform="shrink-4" className="mr-12"></FontAwesomeIcon>
       {title}
       {link ? link : ''}
     </h2>
