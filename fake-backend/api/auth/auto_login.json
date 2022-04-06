@@ -1,0 +1,27 @@
+{
+  "data": {
+    "id": "1",
+    "type": "owner",
+    "attributes": {
+      "title": "Dr.",
+      "first_name": "Max",
+      "last_name": "Monsterman",
+      "status": "member",
+      "email": "htk@it-ref.de",
+      "location": {
+        "city": "München",
+        "fax": null,
+        "geo_code": "48.1344,11.5638339",
+        "message": null,
+        "postal_code": "80336",
+        "phone": "+4989440054641",
+        "street": "Pettenkoferstraße 8",
+        "clinic_name": "Test",
+        "clinic_email": null,
+        "show_in_map": true,
+        "show_contact_details": true,
+        "website": null
+      }
+    }
+  }
+}

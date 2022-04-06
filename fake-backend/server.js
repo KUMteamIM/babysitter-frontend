@@ -10,7 +10,13 @@ app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
-const standardEndpoints = ['auth/login']
+const standardEndpoints = [
+  'auth/login',
+]
+const getEndpoints = [
+  'auth/auto_login',
+  'jobs/1'
+]
 
 for (let index = 0; index < standardEndpoints.length; index++) {
   const ep = standardEndpoints[index]
@@ -19,18 +25,11 @@ for (let index = 0; index < standardEndpoints.length; index++) {
   })
 }
 
-function getWanteds(req) {
-  const wantedIDs =
-    req && req.body && req.body.objectIDs
-      ? JSON.parse(req.body.objectIDs)
-      : false
-
-  return { wantedIDs }
-}
-
-function getWanted(req) {
-  const ded1 = triad('body', req)
-  return ded1
+for (let index = 0; index < getEndpoints.length; index++) {
+  const ep = getEndpoints[index]
+  app.get('/api/v1/' + ep, function (req, res) {
+    findFile(req, ep, res)
+  })
 }
 
 function triad(prm, req) {
