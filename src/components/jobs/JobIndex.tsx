@@ -1,14 +1,15 @@
-import {
-  faChild,
-  faClipboardCheck,
-  faQuestionCircle,
-} from "@fortawesome/free-solid-svg-icons";
+
 import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import ContentContainer from "../ContentContainer";
 import { Link, useParams } from "react-router-dom";
 import { JobDetail } from "./JobDetail";
 import { loadJobs } from "../../api/jobs";
+import {
+  faChild,
+  faClipboardCheck,
+  faPaste,
+} from "@fortawesome/free-solid-svg-icons";
 
 interface PropDefs {
   status: string;
@@ -16,7 +17,7 @@ interface PropDefs {
 
 const iconByStatus: any = {
   booked: faClipboardCheck,
-  requested: faQuestionCircle,
+  requested: faPaste,
   all: faChild,
 };
 
@@ -34,12 +35,12 @@ export const JobIndex = ({ status }: PropDefs) => {
       <ContentContainer
         title={t(`${status}_jobs`)}
         icon={iconByStatus[status]}
-        link={<Link to="/jobs">{t("view_all")}</Link>}
-      ></ContentContainer>
+        path={`/jobs/${status}`}
+      >{status}</ContentContainer>
     </>
   );
 };
 
 JobIndex.defaultProps = {
-  status: "all",
+  status: "available",
 };

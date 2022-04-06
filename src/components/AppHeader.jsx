@@ -22,9 +22,9 @@ export const AppHeader = () => {
           <NavbarLink
             icon={faClipboardCheck}
             title="bookings"
-            path="/bookings"
+            path="/jobs/booked"
           />
-          <NavbarLink icon={faChild} title="listings" path="/listings" />
+          <NavbarLink icon={faChild} title="listings" path="/jobs/available" />
           <NavbarLink icon={faStar} title="favorites" path="/favorites" />
         </ul>
         <NavbarProfile />

@@ -29,6 +29,9 @@ body.lmu-klinikum header {
       background-color: #ececec;
       margin: 0;
       margin-right: 6px;
+      a:hover {
+        text-decoration: none;
+      }
     }
     .navbar-link:hover, .navbar-link.active {
       background-color: white;

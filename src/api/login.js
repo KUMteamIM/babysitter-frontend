@@ -8,10 +8,9 @@ export const logIn = (params) => {
   return new Promise((resolve, reject) => {
     ax.post(`/auth/login`, params)
       .then((res) => {
-        console.log(res)
+        console.log(res.data.jwt)
         localStorage.setItem("token", res.data.jwt);
-        const { user } = res.data;
-        resolve({ ...user.data.attributes, id: user.data.id });
+        resolve(res);
       })
       .catch(reject);
   });

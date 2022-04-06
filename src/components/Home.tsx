@@ -4,6 +4,7 @@ import { JobIndex } from "./jobs/JobIndex";
 import { useCurrentUser } from "../custom_hooks/user";
 import { Favorites } from "./Favorites";
 import { JobDetail } from "./jobs/JobDetail";
+import { JobRequestIndex } from "./jobs/JobRequestIndex";
 
 export const Home = () => {
   const [t] = useTranslation();
@@ -13,7 +14,7 @@ export const Home = () => {
     return (
       <>
         <JobIndex status="booked" />
-        <JobIndex status="requested" />
+        <JobRequestIndex path="job_requests" />
         <JobIndex />
         <Favorites />
       </>

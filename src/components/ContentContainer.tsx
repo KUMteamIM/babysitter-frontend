@@ -9,30 +9,22 @@ interface PropDefs {
   icon: IconProp,
   children?: any,
   title: string,
-  link?: object,
+  path?: string,
 }
 
-const ContentContainer = ({ icon, title, children, link }:PropDefs) => {
+const ContentContainer = ({ icon, title, children, path }:PropDefs) => {
   return (
     <Col sm={6} className="content-container">
-      <IconHeader icon={icon} title={title} link={link} />
+      <IconHeader icon={icon} title={title} path={path} />
       <Container className="contents">
-
-      {children}
+        {children}
       </Container>
     </Col>
   );
 };
 
 ContentContainer.defaultProps = {
-  icon: "question",
   title: "",
-  contentStyle: "",
-};
-
-ContentContainer.propTypes = {
-  icon: PropTypes.object,
-  title: PropTypes.string,
 };
 
 export default ContentContainer;

@@ -54,7 +54,7 @@ export interface Location {
 }
 
 export interface Job {
-  status: number
+  status: string
   location: Location
   description: string
   infant_count: number

@@ -31,7 +31,7 @@ function LoginForm() {
       .then((user) => {
         console.log(user.data.data)
         setCookie("inSession", "true");
-        dispatch(updateCurrentUser(user.data.data));
+        dispatch(updateCurrentUser(user.data));
       })
       .catch(onError);
   };

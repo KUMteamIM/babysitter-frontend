@@ -22,7 +22,7 @@ ActionButton.defaultProps = { icon: "", title: "", variant: "primary" };
 
 ActionButton.propTypes = {
   desc: PropTypes.string,
-  icon: PropTypes.string,
+  icon: PropTypes.any,
   onClick: PropTypes.func,
   title: PropTypes.string,
 };

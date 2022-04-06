@@ -10,7 +10,7 @@ export const Favorites = () => {
     <ContentContainer
       title={t("favorites")}
       icon={faStar}
-      link={<Link to="/favorites">{t("view_all")}</Link>}
+      path="/favorites"
     ></ContentContainer>
   );
 };

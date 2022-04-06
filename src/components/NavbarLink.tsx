@@ -17,14 +17,17 @@ export const NavbarLink = ({ icon, title, path }: PropDefs) => {
   const location = useLocation();
 
   let classes = "navbar-link";
-  if (location?.pathname?.startsWith(path)) {
+  if (
+    (location.pathname.startsWith(path) && path.length > 1) ||
+    location.pathname == path
+  ) {
     classes += " active";
   }
 
   return (
     <li className={classes}>
       <Link to={path}>
-        <FontAwesomeIcon icon={icon} />
+        <FontAwesomeIcon icon={icon} transform="shrink-2" />
         &nbsp;
         {t(title)}
       </Link>
