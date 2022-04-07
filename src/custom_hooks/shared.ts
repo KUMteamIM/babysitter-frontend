@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ax from "../axios";
 
-export const useApiResponse = (path: string, method: string = 'get', params: any = null) => {
+export const useApiResponse = (path: string, method: string = 'get', params: any = null): Array<any> => {
   const [response, setResponse] = useState<any>(null)
   const [error, setError] = useState<Error|null>(null)
   const [loading, setLoading] = useState<boolean>(false)

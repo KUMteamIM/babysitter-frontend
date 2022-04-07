@@ -20,7 +20,7 @@ export const Home = () => {
   } else {
     return (
       <>
-        <JobDetail id={1} />
+        <JobDetail id="" />
         <JobIndex status="booked" />
       </>
     );

@@ -8,6 +8,7 @@ import { JobIndex } from "./jobs/JobIndex";
 import { Home } from "./Home";
 import { JobRequestIndex } from "./jobs/JobRequestIndex";
 import ProfileIndex from "./profile/ProfileIndex";
+import JobShow from "./jobs/JobShow";
 
 export const AppContent = () => {
   const currentUser = useCurrentUser();
@@ -21,7 +22,7 @@ export const AppContent = () => {
               <Route path="/login" element={<LoginForm />}></Route>
               <Route path="/jobs/booked" element={<JobIndex status="booked" />} />
               <Route path="/jobs/available" element={<JobIndex status="available" />} />
-              <Route path="/jobs/:id" element={<JobIndex />} />
+              <Route path="/jobs/:id" element={<JobShow />} />
               <Route path="/job_requests" element={<JobRequestIndex />} />
               <Route path="/profile/:id" element={<ProfileIndex />} />
               <Route path="/profile" element={<ProfileIndex />} />

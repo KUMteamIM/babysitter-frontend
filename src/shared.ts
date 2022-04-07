@@ -29,8 +29,8 @@ export const getDayByIndex = (index: number):string => {
  */
 export const getDisplayName = (user: User|null):string => {
   if(!user) return ''
-  const { first_name, last_name } = user
-  return `${first_name} ${last_name}`;
+  const { title, first_name, last_name } = user
+  return `${title} ${first_name} ${last_name}`;
 };
 
 /**

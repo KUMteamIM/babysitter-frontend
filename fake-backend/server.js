@@ -15,6 +15,7 @@ const standardEndpoints = [
 ]
 const getEndpoints = [
   'auth/auto_login',
+  'jobs',
   'jobs/1',
   'users',
   'users/1',
@@ -55,8 +56,6 @@ function findFile(req, endpoint, res) {
         endpoint +
         '.json'
     )
-
-    console.log(wanted)
 
     try {
       var contents = fs.readFileSync(wanted)

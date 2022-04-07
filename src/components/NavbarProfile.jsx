@@ -29,7 +29,7 @@ export const NavbarProfile = () => {
           </Link>
           <ActionButton
             icon={faSignOutAlt}
-            className="button-md sel-distinct"
+            className="sel-distinct"
             title="sign_out"
           />
         </>
