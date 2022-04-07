@@ -1,6 +1,6 @@
 {
   "data": {
-    "id": "9",
+    "id": "1",
     "type": "owner",
     "title": "Dr.",
     "first_name": "Max",
@@ -13,8 +13,6 @@
       "phone": "+4989440054641",
       "street": "Pettenkoferstraße 8"
     },
-    "image": "/images/danger.jpg",
-    "average_rating": 3.2
-  },
-  "jwt": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo5fQ.3G4pnsXvks7prDS_IKL0DmIB9oNdINSNdPkj1tyVU9Y"
+    "image": "/images/danger.jpg"
+  }
 }

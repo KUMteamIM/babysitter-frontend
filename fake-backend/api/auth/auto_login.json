@@ -2,19 +2,17 @@
   "data": {
     "id": "1",
     "type": "owner",
-    "attributes": {
-      "type": "owner",
-      "title": "Dr.",
-      "first_name": "Max",
-      "last_name": "Monsterman",
-      "status": "member",
-      "email": "htk@it-ref.de",
-      "location": {
-        "city": "München",
-        "postal_code": "80336",
-        "phone": "+4989440054641",
-        "street": "Pettenkoferstraße 8"
-      }
-    }
+    "title": "Dr.",
+    "first_name": "Max",
+    "last_name": "Monsterman",
+    "email": "htk@it-ref.de",
+    "location": {
+      "city": "München",
+      "postal_code": "80336",
+      "phone": "+4989440054641",
+      "street": "Pettenkoferstraße 8"
+    },
+    "image": "/images/danger.jpg",
+    "average_rating": 3.2
   }
 }

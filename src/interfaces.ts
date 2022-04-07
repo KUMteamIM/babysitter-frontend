@@ -1,4 +1,5 @@
 export interface User {
+  id: string
   first_name: string
   last_name: string
   email: string
@@ -15,8 +16,9 @@ export interface User {
   languages: string[]
   favorites: User[]
   reviews: Rating[]
-  average_rating: Number
+  average_rating: number
   type: string
+  image: string
 }
 
 export interface Rating {
@@ -54,6 +56,7 @@ export interface Location {
 }
 
 export interface Job {
+  id: string
   status: string
   location: Location
   description: string
@@ -81,4 +84,10 @@ export interface JobRequest {
 
 export interface Qualification {
   title: string
+}
+
+
+export interface GeoCode {
+  lat: number
+  lng: number
 }

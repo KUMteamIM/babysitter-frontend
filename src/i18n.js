@@ -10,6 +10,7 @@ i18n.use(initReactI18next).init({
       translation: {
         booked_jobs: 'Buchungen',
         job_requests: 'Buchungsanfragen',
+        requests: 'Anfragen',
         available_jobs: 'Gesuche',
         favorites: 'Favoriten',
         sign_out: 'Abmelden',
@@ -25,7 +26,6 @@ i18n.use(initReactI18next).init({
         },
         sign_in: 'Anmelden',
         login: {
-          member_area: 'Mitgliederbereich',
           forgot_password: 'Passwort Vergessen',
           introduction_text: 'Um fortzufahren geben Sie bitte E-Mail-Adresse und Passwort ein.',
           login: 'Anmelden',

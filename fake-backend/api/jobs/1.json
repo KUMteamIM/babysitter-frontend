@@ -1,4 +1,5 @@
 {
+  "id": 1,
   "status": "booked",
   "location": null,
   "description": "something",
@@ -14,5 +15,5 @@
   "end_time": "2022-02-22 23:30:00 CET",
   "owner": { "id": 2 },
   "taker": { "id": 3 },
-  "job_requests": []
+  "job_requests": [{ "id": 5 }]
 }

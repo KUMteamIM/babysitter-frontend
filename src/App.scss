@@ -1,6 +1,7 @@
 @import "css/colors.scss";
 @import "css/header.scss";
 @import "css/content_container.scss";
+@import "css/user.scss";
 
 body {
   font-family: 'Roboto';
@@ -11,15 +12,40 @@ body {
     color: #666 !important;
   }
 
+  .btn {
+    border-radius: 2px;
+  }
+}
+
+body.lmu-klinikum {
+  h1, h2, h3, h4, h5 {
+    color: $green;
+  }
   h2 {
     font-size: 1.5rem;
   }
   .mr-12 {
     margin-right: 12px;
   }
-
-  .btn {
-    border-radius: 2px;
+  .mb-12 {
+    margin-bottom: 12px;
+  }
+  .mb-24 {
+    margin-bottom: 24px;
+  }
+  .mt-24 {
+    margin-top: 24px;
+  }
+  .mt-12 {
+    margin-top: 12px;
+  }
+  .pr-12 {
+    padding-right: 12px;
+  }
+  ul, ul li {
+    padding: 0;
+    padding-left: 0;
+    list-style-type: none;
   }
 }
 

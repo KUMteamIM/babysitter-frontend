@@ -7,6 +7,7 @@ import LoginForm from "./LoginForm";
 import { JobIndex } from "./jobs/JobIndex";
 import { Home } from "./Home";
 import { JobRequestIndex } from "./jobs/JobRequestIndex";
+import ProfileIndex from "./profile/ProfileIndex";
 
 export const AppContent = () => {
   const currentUser = useCurrentUser();
@@ -22,6 +23,9 @@ export const AppContent = () => {
               <Route path="/jobs/available" element={<JobIndex status="available" />} />
               <Route path="/jobs/:id" element={<JobIndex />} />
               <Route path="/job_requests" element={<JobRequestIndex />} />
+              <Route path="/profile/:id" element={<ProfileIndex />} />
+              <Route path="/profile" element={<ProfileIndex />} />
+              {/* <Route path="/profile/edit" element={<ProfileEditor />} /> */}
               <Route path="/" element={<Home />} />
             </>
           ) : (

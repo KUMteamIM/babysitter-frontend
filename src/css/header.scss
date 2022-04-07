@@ -11,6 +11,10 @@ body.lmu-klinikum header {
       font-size: .7em;
       text-transform: uppercase;
     }
+    .profile-link {
+      color: black;
+      font-size: 1.1rem;
+    }
   }
   .justify-content-end {
     justify-content: space-between !important;
@@ -22,11 +26,14 @@ body.lmu-klinikum header {
     display: flex;
     list-style-type: none;
     margin-bottom: 0;
+    margin-left: 6px;
     padding-bottom: 0;
 
     .navbar-link {
       padding: 5px 10px;
       background-color: #ececec;
+      border-top-left-radius: 4px;
+      border-top-right-radius: 4px;
       margin: 0;
       margin-right: 6px;
       a:hover {

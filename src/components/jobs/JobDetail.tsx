@@ -22,9 +22,8 @@ export const JobDetail = ({ id }: PropDefs) => {
 
   return (
     <ContentContainer
-      title={t("favorites")}
+      title="Job Title"
       icon={faStar}
-      path="/favorites"
     ></ContentContainer>
   );
 };

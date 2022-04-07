@@ -8,6 +8,7 @@ import {
   faChild,
   faClipboardCheck,
   faHouseUser,
+  faPaste,
   faStar,
 } from "@fortawesome/free-solid-svg-icons";
 
@@ -19,12 +20,13 @@ export const AppHeader = () => {
       <CommonNavbar logo={logo}>
         <ul className="navbar-links">
           <NavbarLink icon={faHouseUser} title="home" path="/" />
+          <NavbarLink icon={faChild} title="listings" path="/jobs/available" />
+          <NavbarLink icon={faPaste} title="requests" path="/job_requests" />
           <NavbarLink
             icon={faClipboardCheck}
             title="bookings"
             path="/jobs/booked"
           />
-          <NavbarLink icon={faChild} title="listings" path="/jobs/available" />
           <NavbarLink icon={faStar} title="favorites" path="/favorites" />
         </ul>
         <NavbarProfile />

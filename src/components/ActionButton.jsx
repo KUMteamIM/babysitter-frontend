@@ -5,11 +5,11 @@ import Button from "react-bootstrap/Button";
 import { useTranslation } from "react-i18next";
 
 export const ActionButton = (props) => {
-  const { desc, title, icon } = props;
+  const { desc, title, icon, onClick, className } = props;
   const [t] = useTranslation();
   return (
     <>
-      <Button {...props}>
+      <Button onClick={onClick} className={className}>
         {icon && <FontAwesomeIcon icon={icon} />}
         {t(title)}
       </Button>

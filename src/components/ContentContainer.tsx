@@ -1,30 +1,44 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { IconHeader } from "./IconHeader";
-import Col from "react-bootstrap/Col";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
+import CommonSpinner from "@lmu-med/ci-components/dist/components/CommonSpinner";
+import React from "react";
 import { Container } from "react-bootstrap";
+import Col from "react-bootstrap/Col";
+import Alert from "react-bootstrap/Alert";
+import { IconHeader } from "./IconHeader";
 
 interface PropDefs {
-  icon: IconProp,
-  children?: any,
-  title: string,
-  path?: string,
+  icon: IconProp;
+  children?: any;
+  title: string;
+  path?: string;
+  result?: any;
 }
 
-const ContentContainer = ({ icon, title, children, path }:PropDefs) => {
+const ContentContainer = ({
+  icon,
+  title,
+  children,
+  path,
+  result,
+}: PropDefs) => {
+  const [response, loading, error] = result || [null, false, false]
+
   return (
     <Col sm={6} className="content-container">
       <IconHeader icon={icon} title={title} path={path} />
-      <Container className="contents">
-        {children}
-      </Container>
+      {error && <Alert variant="danger">{error.message}</Alert>}
+      {loading ? (
+        <CommonSpinner />
+      ) : (
+        <Container className="contents">{children}</Container>
+      )}
     </Col>
   );
 };
 
 ContentContainer.defaultProps = {
   title: "",
+  loading: false,
 };
 
 export default ContentContainer;

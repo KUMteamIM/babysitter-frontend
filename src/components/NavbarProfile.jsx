@@ -1,14 +1,11 @@
-import {
-  faDoorOpen,
-  faSignInAlt,
-  faSignOutAlt,
-} from "@fortawesome/free-solid-svg-icons";
+import { faSignInAlt, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
-import { Button } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 import { getDisplayName } from "../shared";
 import { useCurrentUser } from "./../custom_hooks/user";
 import { ActionButton } from "./ActionButton";
+import UserImage from "./UserImage";
 
 export const NavbarProfile = () => {
   const currentUser = useCurrentUser();
@@ -18,13 +15,18 @@ export const NavbarProfile = () => {
     <div className="rowflex navbar-profile">
       {!!currentUser ? (
         <>
-          <p>
+          <p className="pr-12">
             <span className="small">
               {t("signed_in_as")}
               <br />
             </span>
-            {getDisplayName(currentUser)}
+            <Link to="/profile" className="profile-link">
+              {getDisplayName(currentUser)}
+            </Link>
           </p>
+          <Link to="/profile">
+            <UserImage src={currentUser.image} type="small" />
+          </Link>
           <ActionButton
             icon={faSignOutAlt}
             className="button-md sel-distinct"

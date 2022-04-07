@@ -15,7 +15,10 @@ const standardEndpoints = [
 ]
 const getEndpoints = [
   'auth/auto_login',
-  'jobs/1'
+  'jobs/1',
+  'users',
+  'users/1',
+  'users/1/ratings'
 ]
 
 for (let index = 0; index < standardEndpoints.length; index++) {

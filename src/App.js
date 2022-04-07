@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import './App.scss';
 import '@lmu-med/styles/dist/lmu.css'
+import './App.scss';
 import { CommonFooter } from '@lmu-med/ci-components';
 import { CommonCookieNotice } from '@lmu-med/ci-components';
 import { BrowserRouter as Router } from "react-router-dom";
@@ -19,12 +19,10 @@ function App() {
   return (
     <Provider store={store}>
       <Router>
-        <div className="App">
-          <AppHeader />
-          <AppContent />
-          <CommonFooter />
-          <CommonCookieNotice />
-        </div>
+        <AppHeader />
+        <AppContent />
+        <CommonFooter />
+        <CommonCookieNotice />
       </Router>
     </Provider>
   );
