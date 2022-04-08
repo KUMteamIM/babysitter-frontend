@@ -10,9 +10,13 @@ export const CommonFieldList = ({data}:PropDefs) => {
     if(typeof value !== 'object') return <li key={key}>{key}: {value}</li>
   })
 
-  return <div><ul>
-    {dataEntries}
-    </ul></div>
+  return (
+    <div>
+      <ul>
+        {dataEntries}
+      </ul>
+    </div>
+  )
 }
 
 export default CommonFieldList
