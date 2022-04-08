@@ -20,12 +20,12 @@ export const AppHeader = () => {
       <CommonNavbar logo={logo}>
         <ul className="navbar-links">
           <NavbarLink icon={faHouseUser} title="home" path="/" />
-          <NavbarLink icon={faChild} title="listings" path="/jobs/available" />
-          <NavbarLink icon={faPaste} title="requests" path="/job_requests" />
+          <NavbarLink icon={faChild} title="listings" path="/listings" />
+          <NavbarLink icon={faPaste} title="requests" path="/requests" />
           <NavbarLink
             icon={faClipboardCheck}
             title="bookings"
-            path="/jobs/booked"
+            path="/bookings"
           />
           <NavbarLink icon={faStar} title="favorites" path="/favorites" />
         </ul>

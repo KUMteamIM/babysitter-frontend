@@ -25,7 +25,7 @@ export const ProfileIndex = () => {
   const result = useApiResponse(wantedId ? `users/${wantedId}` : '')
 
   useEffect(() => {
-    if(result[0]) setUser(result[0].data.data);
+    if(result[0]) setUser(result[0].data);
   }, [result]);
 
   const icon = user?.type === 'owner' ? faFemale : faUser

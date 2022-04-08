@@ -12,7 +12,7 @@ export const Ratings = ({id}:PropDefs) => {
   const result = useApiResponse(id ? `/users/${id}/ratings` : '')
 
   return  <ContentContainer result={result} title="ratings" icon={faStar}>
-    {result && result[0] && result[0].data.length ? result[0].data.map((rating:Rating) => {
+    {result && result[0] && result[0].length ? result[0].map((rating:Rating) => {
       return <div>
         <Stars average={rating.stars} />
         <i>{rating.review}</i><br />

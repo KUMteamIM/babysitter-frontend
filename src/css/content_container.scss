@@ -4,6 +4,9 @@ body.lmu-klinikum {
       background-color: $light-green;
       min-height: 200px;
       border-radius: 2px;
+      a {
+        color: #333;
+      }
     }
 
     h2 a {
@@ -12,5 +15,13 @@ body.lmu-klinikum {
       text-decoration: underline;
     }
     margin-bottom: 2em;
+  }
+
+  .content-container.requests .contents,
+  .content-container.complete .contents {
+    background-color: $light-grey;
+  }
+  .content-container.available .contents {
+    background-color: white;
   }
 }

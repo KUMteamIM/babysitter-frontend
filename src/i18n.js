@@ -21,9 +21,16 @@ i18n.use(initReactI18next).init({
         view_all: 'Alle ansehen',
         email: 'E-Mail',
         password: 'Passwort',
+        complete_jobs: 'Abgeschlossene Buchungen',
+        create_new: 'Anlegen',
         sign_up: {
           header: 'Neuregistrierung',
         },
+        create_job: 'Neues Gesuch anlegen',
+        description: 'Beschreibung',
+        time: 'Zeit',
+        times: 'Zeiten',
+        location: 'Standort',
         sign_in: 'Anmelden',
         login: {
           forgot_password: 'Passwort Vergessen',
@@ -35,6 +42,65 @@ i18n.use(initReactI18next).init({
           standard_error: 'Einige Ihrer Angaben sind fehlerhaft.',
           sign_up_action: 'Neuregistrierung.',
           sign_up_desc: 'Sie haben noch kein Konto und möchten am Netzwerk teilnehmen? Dann hier entlang zur'
+        },
+        dates: {
+          abbr_day_names: [
+            "So",
+            "Mo",
+            "Di",
+            "Mi",
+            "Do",
+            "Fr",
+            "Sa"
+          ],
+          abbr_month_names: [
+            null,
+            "Jan",
+            "Feb",
+            "Mär",
+            "Apr",
+            "Mai",
+            "Jun",
+            "Jul",
+            "Aug",
+            "Sep",
+            "Okt",
+            "Nov",
+            "Dez"
+          ],
+          day_names: [
+            "Sonntag",
+            "Montag",
+            "Dienstag",
+            "Mittwoch",
+            "Donnerstag",
+            "Freitag",
+            "Samstag"
+          ],
+          formats: {
+            default: "%d.%m.%Y",
+            long: "%e. %B %Y",
+            short: "%e. %b"
+          },
+          month_names: [
+            null,
+            "Januar",
+            "Februar",
+            "März",
+            "April",
+            "Mai",
+            "Juni",
+            "Juli",
+            "August",
+            "September",
+            "Oktober",
+            "November",
+            "Dezember"
+          ],
+          order: [":day",
+            ":month",
+            ":year"
+          ]
         }
       },
     },

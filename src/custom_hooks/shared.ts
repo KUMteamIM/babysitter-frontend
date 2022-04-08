@@ -12,8 +12,6 @@ export const useApiResponse = (path: string, method: string = 'get', params: any
     setError(null)
     setLoading(true)
 
-    console.log(`${method} from ${path}`)
-
     if(method === 'post') {
       promise = ax.post(path, params)
     } else {
@@ -23,7 +21,7 @@ export const useApiResponse = (path: string, method: string = 'get', params: any
 
     promise.then((res: any) => {
       setLoading(false)
-      setResponse(res)
+      setResponse(res.data)
     })
     .catch((e:Error) => {
       setLoading(false)

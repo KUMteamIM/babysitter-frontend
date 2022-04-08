@@ -47,7 +47,24 @@ body.lmu-klinikum {
     padding-left: 0;
     list-style-type: none;
   }
+
+  .btn-primary {
+    background-color: $green;
+    border-color: $green;
+    text-transform: none;
+
+    svg {
+      margin-right: 8px;
+    }
+
+    &:hover {
+      background-color: $dark-green;
+      border-color: $dark-green;
+    }
+  }
+
 }
+
 
 .login-form {
   padding-top: 10vh;

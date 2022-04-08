@@ -7,11 +7,12 @@ import Alert from "react-bootstrap/Alert";
 import { IconHeader } from "./IconHeader";
 
 interface PropDefs {
-  icon: IconProp;
+  icon?: IconProp;
   children?: any;
   title: string;
   path?: string;
   result?: any;
+  className: string
 }
 
 const ContentContainer = ({
@@ -20,17 +21,18 @@ const ContentContainer = ({
   children,
   path,
   result,
+  className
 }: PropDefs) => {
   const [response, loading, error] = result || [null, false, false]
 
   return (
-    <Col sm={6} className="content-container">
+    <Col sm={6} className={`content-container ${className}`}>
       <IconHeader icon={icon} title={title} path={path} />
       {error && <Alert variant="danger">{error.message}</Alert>}
       {loading ? (
         <CommonSpinner />
       ) : (
-        <Container className="contents">{children}</Container>
+        <div className="contents">{children}</div>
       )}
     </Col>
   );
@@ -39,6 +41,7 @@ const ContentContainer = ({
 ContentContainer.defaultProps = {
   title: "",
   loading: false,
+  className: '',
 };
 
 export default ContentContainer;

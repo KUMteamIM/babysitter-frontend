@@ -1,67 +1,72 @@
-
 import React, { useEffect, useState } from "react";
+import { Row, Table } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
-import ContentContainer from "../ContentContainer";
-import { Link, useParams } from "react-router-dom";
-import { JobDetail } from "./JobDetail";
-import { loadJobs } from "../../api/jobs";
-import {
-  faChild,
-  faClipboardCheck,
-  faPaste,
-} from "@fortawesome/free-solid-svg-icons";
 import { useApiResponse } from "../../custom_hooks/shared";
-import { Job } from "../../interfaces";
+import { Job, JobStatus } from "../../interfaces";
+import { getMonthByIndex, iconByStatus, pathByStatus } from "../../shared";
+import ContentContainer from "../ContentContainer";
 import JobListEntry from "./JobListEntry";
+import "./jobs.scss";
+import JobsContainer from "./JobsContainer";
 
 interface PropDefs {
-  status: string;
+  status: JobStatus;
 }
 
 interface RequestParams {
-  id?: string
-  status?: string
+  status?: JobStatus;
+  limit?: number;
 }
-
-const iconByStatus: any = {
-  booked: faClipboardCheck,
-  requested: faPaste,
-  available: faChild,
-};
 
 export const JobIndex = ({ status }: PropDefs) => {
   const [t] = useTranslation();
-  const { id } = useParams();
-  const [reqParams, setReqParams] = useState<RequestParams|null>(null)
-  const result = useApiResponse('jobs', 'get', reqParams)
+  const [reqParams, setReqParams] = useState<RequestParams | null>(null);
+  const result = useApiResponse("jobs", "get", reqParams);
 
   useEffect(() => {
-    let nrp: RequestParams = {}
-    if(id) nrp.id = id
-    if(status) nrp.status = status
-    setReqParams(nrp)
-  }, [id, status])
+    let nrp: RequestParams = { limit: 8 };
+    if (status) nrp.status = status;
+    setReqParams(nrp);
+  }, [status]);
 
-  const buildList = ():Array<typeof JobListEntry> => {
-    if(result[0] && result[0].data.length) {
-      return result[0].data.map((job: Job, index: number) => {
-        return <JobListEntry job={job} key={index} />
-      })
+  const buildList = (): Array<typeof JobListEntry> => {
+    if (result[0] && result[0].length) {
+      let lastMonth = new Date("01-01-2000").getMonth();
+      return result[0]
+        .sort((a: Job, b: Job) => {
+          return a.start_time > b.start_time ? -1 : 1;
+        })
+        .map((job: Job, index: number) => {
+          let startDate = new Date(job.start_time);
+          const startMonth = startDate.getMonth();
+          let monthInsert = null;
+          if (startMonth > lastMonth) {
+            lastMonth = startMonth;
+            monthInsert = (
+              <tr>
+                <td colSpan={4} className="month-insert">
+                  {getMonthByIndex(startMonth)} {startDate.getFullYear()}
+                </td>
+              </tr>
+            );
+          }
+          return (
+            <React.Fragment key={index}>
+              {monthInsert}
+              <JobListEntry job={job} />
+            </React.Fragment>
+          );
+        });
     }
-    return []
-  }
+    return [];
+  };
 
   return (
-    <>
-      <ContentContainer
-        result={result}
-        title={t(`${status}_jobs`)}
-        icon={iconByStatus[status]}
-        path={`/jobs/${status}`}
-      >
-        {buildList()}
-      </ContentContainer>
-    </>
+    <JobsContainer result={result} status={status || ""}>
+      <Table striped className="job-list">
+        <tbody>{buildList()}</tbody>
+      </Table>
+    </JobsContainer>
   );
 };
 

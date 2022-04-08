@@ -1,0 +1,21 @@
+@import '../../css/colors.scss';
+
+table.job-list {
+  font-size: 1rem;
+  tr td {
+    cursor: pointer;
+  }
+  td.times {
+    width: 30%;
+  }
+  td.price {
+    width: 60px;
+  }
+  td.month-insert {
+    font-size: .7rem;
+    color: #777;
+    text-transform: uppercase;
+    background-color: white;
+    box-shadow: none;
+  }
+}

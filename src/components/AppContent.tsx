@@ -6,9 +6,13 @@ import Row from "react-bootstrap/Row";
 import LoginForm from "./LoginForm";
 import { JobIndex } from "./jobs/JobIndex";
 import { Home } from "./Home";
-import { JobRequestIndex } from "./jobs/JobRequestIndex";
+import { JobRequestIndex } from "./job_requests/JobRequestIndex";
 import ProfileIndex from "./profile/ProfileIndex";
-import JobShow from "./jobs/JobShow";
+import JobView from "./jobs/JobView";
+import { JobRequestShow } from "./job_requests/JobRequestView";
+import { Bookings } from "./Bookings";
+import { JobListings } from "./jobs/JobListings";
+import { BrowserRouter } from "react-router-dom";
 
 export const AppContent = () => {
   const currentUser = useCurrentUser();
@@ -20,10 +24,11 @@ export const AppContent = () => {
           {!!currentUser ? (
             <>
               <Route path="/login" element={<LoginForm />}></Route>
-              <Route path="/jobs/booked" element={<JobIndex status="booked" />} />
-              <Route path="/jobs/available" element={<JobIndex status="available" />} />
-              <Route path="/jobs/:id" element={<JobShow />} />
-              <Route path="/job_requests" element={<JobRequestIndex />} />
+              <Route path="/bookings" element={<Bookings />} />
+              <Route path="/listings" element={<JobListings />} />
+              <Route path="/jobs/:id" element={<JobView />} />
+              <Route path="/requests/:id" element={<JobRequestShow />} />
+              <Route path="/requests" element={<JobRequestIndex />} />
               <Route path="/profile/:id" element={<ProfileIndex />} />
               <Route path="/profile" element={<ProfileIndex />} />
               {/* <Route path="/profile/edit" element={<ProfileEditor />} /> */}
@@ -35,5 +40,6 @@ export const AppContent = () => {
         </Routes>
       </Row>
     </Container>
+
   );
 };

@@ -37,17 +37,6 @@ export interface DefaultState {
   currentUser: User | null
 }
 
-export const jobtypes = [
-  'draft',
-  'available',
-  'invisble',
-  'booked',
-  'canceled',
-  'complete'
-];
-
-export type JobType = typeof jobtypes;
-
 export interface Location {
   street: string
   street2: string
@@ -58,7 +47,7 @@ export interface Location {
 
 export interface Job {
   id: string
-  status: string
+  status: JobStatus
   location: Location
   description: string
   infant_count: number
@@ -69,8 +58,8 @@ export interface Job {
   required_qualifications: Qualification[]
   wanted_languages: string[]
   has_pets: boolean
-  start_time: Date
-  end_time: Date
+  start_time: Date|string
+  end_time: Date|string
   owner: User
   taker: User
   job_requests: JobRequest[]
@@ -87,8 +76,18 @@ export interface Qualification {
   title: string
 }
 
-
 export interface GeoCode {
   lat: number
   lng: number
+}
+
+export type JobStatus =  'draft' | 'available' | 'invisble' | 'booked' | 'canceled' | 'complete'
+export type JobRequestStatus =  'open' | 'canceled' | 'expired' | 'declined' | 'accepted'
+export type JobRequestType =  'offer' | 'request'
+
+export interface DateDetails {
+  start_time: Date
+  end_time: Date
+  hours: number
+  minutes: number
 }

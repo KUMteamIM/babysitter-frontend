@@ -1,6 +1,12 @@
+import {
+  faChild,
+  faClipboardCheck,
+  faHistory,
+  faPaste
+} from "@fortawesome/free-solid-svg-icons";
 import { getI18n } from "react-i18next";
 import * as Yup from "yup";
-import { GeoCode, User } from "./interfaces";
+import { DateDetails, GeoCode, Job, User } from "./interfaces";
 
 /**
  * @param {string} geocode | comma-seperated latitude and longitude
@@ -20,6 +26,14 @@ export const latlngforMap = (geo_code: string):GeoCode => {
  */
 export const getDayByIndex = (index: number):string => {
   return getI18n().t("dates.abbr_day_names")[index];
+};
+/**
+ * Returns the localized month name from index, i.e. 1 = Jan
+ * @param {number} index
+ * @returns translated month name
+ */
+export const getMonthByIndex = (index: number):string => {
+  return getI18n().t("dates.month_names")[index];
 };
 
 /**
@@ -118,3 +132,100 @@ export const passwordValidationSchema = (t:any):any => Yup.object().shape({
     })
   ).oneOf([Yup.ref("password"), null], t("passwords.must_match")),
 });
+
+export const getDateDetails = (job:Job):DateDetails => {
+  const end_time = new Date(job.end_time)
+  const start_time = new Date(job.start_time)
+  const milliseconds = durationInMs(start_time, end_time)
+  const hours = new Date(milliseconds).getHours()
+  const minutes = new Date(milliseconds - (hours*60*1000)).getMinutes()
+  return { end_time, start_time, hours, minutes }
+}
+
+const defaultDateOptions = {
+  day: "numeric",
+  month: "numeric",
+  hour: "2-digit",
+  minute: "2-digit",
+};
+
+/**
+ * Formats date into locale-specific string with either day, month, hour, minute
+ * or any other options passed
+ * @param {date} date
+ * @param {options} DateOptions
+ */
+export const displayDate = (date: Date, options: any) => {
+  try {
+    return new Intl.DateTimeFormat(
+      navigator.language,
+      options || defaultDateOptions
+    ).format(date);
+  } catch (e:any) {
+    return e.message;
+  }
+};
+
+/**
+ * Formats date into locale-specific string with month and year
+ * @param {date} date
+ */
+export const displayDateMonthYear = (date: Date) => {
+  return displayDate(date, { month: "numeric", year: "numeric" });
+};
+
+/**
+ * Display day and month
+ * @param {date} date
+ */
+export const displayDateDayMonth = (date: Date) => {
+  return displayDate(date, { month: "numeric", day: "numeric" });
+};
+/**
+ * Display hour and minute
+ * @param {date} date
+ */
+export const displayHourMinute = (date: Date) => {
+  return displayDate(date, { hour: "numeric", minute: "numeric" });
+};
+
+/**
+ * Calculate distance between two points
+ * @param pointA GeoCode
+ * @param pointB GeoCode
+ * @returns distance in meters
+ */
+export const caluclateDistance = (pointA:GeoCode, pointB:GeoCode):number => {
+  const lat1 = pointA.lat
+  const lat2 = pointB.lat
+  const lon1 = pointA.lng
+  const lon2 = pointB.lng
+
+  const R = 6371e3; // meters
+  const φ1 = lat1 * Math.PI/180; // φ, λ in radians
+  const φ2 = lat2 * Math.PI/180;
+  const Δφ = (lat2-lat1) * Math.PI/180;
+  const Δλ = (lon2-lon1) * Math.PI/180;
+
+  const a = Math.sin(Δφ/2) * Math.sin(Δφ/2) +
+            Math.cos(φ1) * Math.cos(φ2) *
+            Math.sin(Δλ/2) * Math.sin(Δλ/2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+
+  const d = R * c; // in metres
+  return d
+}
+
+
+export const iconByStatus: any = {
+  booked: faClipboardCheck,
+  requested: faPaste,
+  available: faChild,
+  complete: faHistory,
+};
+
+export const pathByStatus: any = {
+  booked: "bookings",
+  complete: "bookings",
+  available: "listings",
+};

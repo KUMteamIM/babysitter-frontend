@@ -7,8 +7,7 @@ interface PropDefs {
 export const CommonFieldList = ({data}:PropDefs) => {
   if(!data) return null
   const dataEntries = Object.entries(data).map(([key, value]) => {
-    console.log(key, value)
-    if(typeof value !== 'object') return <li>{key}: {value}</li>
+    if(typeof value !== 'object') return <li key={key}>{key}: {value}</li>
   })
 
   return <div><ul>
