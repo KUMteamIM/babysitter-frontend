@@ -15,7 +15,7 @@ export const JobListings = () => {
   return (
     <React.Fragment>
       <JobIndex status="available" />
-      <Col sm={6}>
+      <Col sm={3}>
         <NewListingButton />
       </Col>
     </React.Fragment>

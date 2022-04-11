@@ -1,8 +1,10 @@
 import {
   faChild,
   faClipboardCheck,
+  faClipboardQuestion,
   faHistory,
-  faPaste
+  faPaste,
+  faSearch
 } from "@fortawesome/free-solid-svg-icons";
 import { getI18n } from "react-i18next";
 import * as Yup from "yup";
@@ -216,11 +218,10 @@ export const caluclateDistance = (pointA:GeoCode, pointB:GeoCode):number => {
   return d
 }
 
-
 export const iconByStatus: any = {
   booked: faClipboardCheck,
-  requested: faPaste,
-  available: faChild,
+  requested: faClipboardQuestion,
+  available: faSearch,
   complete: faHistory,
 };
 

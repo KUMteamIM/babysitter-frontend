@@ -1,16 +1,16 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { useNavigate } from "react-router";
-import { Link } from "react-router-dom";
 import { Job } from "../../interfaces";
-import { displayDateDayMonth, displayHourMinute, getDateDetails } from "../../shared";
+import { iconByStatus } from "../../shared";
+import { JobFragment } from "./JobFragment";
 
 interface PropDefs {
   job: Job;
 }
 
 export const JobListEntry = ({ job }: PropDefs) => {
-  const { description, pay_rate, id } = job;
-  const { hours, start_time, end_time, minutes } = getDateDetails(job)
+  const { pay_rate, id, status } = job;
 
   const navigate = useNavigate()
   const showJob = () => {
@@ -19,9 +19,7 @@ export const JobListEntry = ({ job }: PropDefs) => {
   return (
     <tr onClick={showJob}>
       <td className="times">
-        <b>{displayDateDayMonth(start_time)}</b> <br />
-        {displayHourMinute(start_time)} - {displayHourMinute(end_time)} Uhr<br />
-        {hours}h {minutes}m
+        <JobFragment job={job} />
       </td>
       <td>
         location
@@ -29,8 +27,10 @@ export const JobListEntry = ({ job }: PropDefs) => {
       <td className="price">
         {pay_rate}&euro;
       </td>
+      <td className="status">
+        <FontAwesomeIcon icon={iconByStatus[status]} />
+      </td>
     </tr>
-
   );
 };
 

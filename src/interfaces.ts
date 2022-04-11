@@ -18,9 +18,12 @@ export interface User {
   favorites: User[]
   reviews: Rating[]
   average_rating: number
-  type: string
+  type: UserType
   image: string
+  availability: Availability
 }
+
+export type UserType = 'owner' | 'taker'
 
 export interface Rating {
   review: string
@@ -64,6 +67,16 @@ export interface Job {
   taker: User
   job_requests: JobRequest[]
 }
+
+export interface Availability {
+  start_time: Date|string
+  end_time: Date|string
+  repeats: boolean
+  days: string[]
+  status: AvailabilityStatus
+}
+
+export type AvailabilityStatus = 'not_available' | 'available' | 'on_request'
 
 export interface JobRequest {
   status: string

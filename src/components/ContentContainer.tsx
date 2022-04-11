@@ -26,7 +26,7 @@ const ContentContainer = ({
   const [response, loading, error] = result || [null, false, false]
 
   return (
-    <Col sm={6} className={`content-container ${className}`}>
+    <Col className={`content-container ${className}`}>
       <IconHeader icon={icon} title={title} path={path} />
       {error && <Alert variant="danger">{error.message}</Alert>}
       {loading ? (

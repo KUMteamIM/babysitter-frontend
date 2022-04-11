@@ -4,15 +4,15 @@ import { useCurrentUser } from "./../custom_hooks/user";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import LoginForm from "./LoginForm";
-import { JobIndex } from "./jobs/JobIndex";
 import { Home } from "./Home";
 import { JobRequestIndex } from "./job_requests/JobRequestIndex";
-import ProfileIndex from "./profile/ProfileIndex";
+import ProfileIndex from "./user/ProfileIndex";
 import JobView from "./jobs/JobView";
 import { JobRequestShow } from "./job_requests/JobRequestView";
 import { Bookings } from "./Bookings";
 import { JobListings } from "./jobs/JobListings";
-import { BrowserRouter } from "react-router-dom";
+import { Offers } from "./Offers";
+import { Favorites } from "./Favorites";
 
 export const AppContent = () => {
   const currentUser = useCurrentUser();
@@ -32,6 +32,8 @@ export const AppContent = () => {
               <Route path="/profile/:id" element={<ProfileIndex />} />
               <Route path="/profile" element={<ProfileIndex />} />
               {/* <Route path="/profile/edit" element={<ProfileEditor />} /> */}
+              <Route path="/favorites" element={<Favorites />} />
+              <Route path="/offers" element={<Offers />} />
               <Route path="/" element={<Home />} />
             </>
           ) : (

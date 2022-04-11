@@ -16,6 +16,8 @@ i18n.use(initReactI18next).init({
         sign_out: 'Abmelden',
         signed_in_as: 'Angemeldet als',
         listings: 'Gesuche',
+        listing: 'Gesuch',
+        offerer: 'Anbieter',
         bookings: 'Buchungen',
         home: 'Start',
         view_all: 'Alle ansehen',
@@ -26,6 +28,8 @@ i18n.use(initReactI18next).init({
         sign_up: {
           header: 'Neuregistrierung',
         },
+        my_listings: 'Meine Gesuche',
+        offers: 'Angebote',
         create_job: 'Neues Gesuch anlegen',
         description: 'Beschreibung',
         time: 'Zeit',

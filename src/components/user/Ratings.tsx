@@ -3,7 +3,7 @@ import React, { useEffect } from "react"
 import { useApiResponse } from "../../custom_hooks/shared"
 import { Rating } from "../../interfaces"
 import ContentContainer from "../ContentContainer"
-import Stars from "../Stars"
+import Stars from "./Stars"
 
 interface PropDefs {
   id?: string
