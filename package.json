@@ -12,7 +12,7 @@
     "@fortawesome/free-solid-svg-icons": "6.1.1",
     "@fortawesome/react-fontawesome": "^0.1.18",
     "@lmu-med/ci-components": "^0.1.7",
-    "@lmu-med/styles": "^0.1.6",
+    "@lmu-med/styles": "^0.1.10",
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
