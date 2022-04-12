@@ -1,0 +1,49 @@
+[
+  {
+    "id": 2,
+    "status": "booked",
+    "location": null,
+    "description": "something",
+    "infant_count": 1,
+    "toddler_count": 1,
+    "school_age_count": 0,
+    "pay_rate": 22,
+    "smoker": false,
+    "required_qualifications": [],
+    "wanted_languages": [],
+    "has_pets": true,
+    "start_time": "Apr 08 2025 12:25:38 GMT+0200",
+    "end_time": "Apr 08 2025 14:25:38 GMT+0200",
+    "owner": { "id": 2 },
+    "taker": { "id": 3 },
+    "job_requests": [
+      { "id": 5, "status": "open", "type": "request", "candidate": { "id": 1 } }
+    ]
+  },
+  {
+    "id": 2,
+    "status": "booked",
+    "location": null,
+    "description": " I tested the code again and setting padding for Grid is not the way to go.",
+    "infant_count": 1,
+    "toddler_count": 1,
+    "school_age_count": 0,
+    "pay_rate": 27,
+    "smoker": false,
+    "required_qualifications": [],
+    "wanted_languages": [],
+    "has_pets": true,
+    "start_time": "Thu Apr 08 2022 15:25:38 GMT+0200",
+    "end_time": "Thu Apr 08 2022 23:30:00 GMT+0200",
+    "owner": { "id": 2 },
+    "taker": { "id": 3 },
+    "job_requests": [
+      {
+        "id": 6,
+        "status": "open",
+        "type": "request",
+        "candidate": { "id": 1 }
+      }
+    ]
+  }
+]

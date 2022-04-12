@@ -16,7 +16,7 @@ export const useApiResponse = (path: string, method: string = 'get', params: any
       promise = ax.post(path, params)
     } else {
       let urlParams: string = params ? `?${new URLSearchParams(params).toString()}` : ''
-      promise = ax.get(`${path}${urlParams}`)
+      promise = ax.get(`${path}.json${urlParams}`)
     }
 
     promise.then((res: any) => {

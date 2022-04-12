@@ -11,7 +11,6 @@ interface PropDefs {
 }
 
 export const UserDetails = ({ user }: PropDefs) => {
-  console.log(user)
   if(!user) return null;
   return (
     <Row>

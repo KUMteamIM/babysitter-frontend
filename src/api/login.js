@@ -6,7 +6,7 @@ import { getCookie } from "../shared";
 export const logIn = (params) => {
   store.dispatch(updateCurrentUser());
   return new Promise((resolve, reject) => {
-    ax.post(`/auth/login`, params)
+    ax.post(`/auth/login.json`, params)
       .then((res) => {
         console.log(res.data.jwt)
         localStorage.setItem("token", res.data.jwt);
@@ -55,7 +55,7 @@ export const checkForUserInSession = async () => {
 export const currentUserSession = async () => {
   const token = localStorage.getItem("token");
   if (token) {
-    const response = await ax.get("/auth/auto_login");
+    const response = await ax.get("/auth/auto_login.json");
     return response;
   } else return Promise.reject();
 };
