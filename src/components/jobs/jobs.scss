@@ -1,21 +1,69 @@
 @import '../../css/colors.scss';
 
-table.job-list {
-  font-size: 1rem;
-  tr td {
-    cursor: pointer;
+body.lmu-klinikum {
+  table.job-list {
+    font-size: 1rem;
+    tr td {
+      cursor: pointer;
+    }
+    td.times {
+      width: 30%;
+    }
+    td.price {
+      width: 60px;
+    }
+    td.month-insert {
+      font-size: .7rem;
+      color: #777;
+      text-transform: uppercase;
+      background-color: white;
+      box-shadow: none;
+    }
+    td.icon {
+      width: 10%;
+    }
   }
-  td.times {
-    width: 30%;
+
+  .job-detail {
+    background-color: $green;
+    color: white;
+    h3, h4 {
+      color: white;
+    }
+    .small {
+      text-transform: uppercase;
+    }
+    .pay_flag {
+      background-color: $yellow;
+      color: $green;
+      border-right-style: dashed;
+      border-right-color: $green;
+      border-right-width: 3px;
+      border-radius: 2px;
+      h2 { color: $green; }
+    }
   }
-  td.price {
-    width: 60px;
+
+  .job-filters {
+    line-height: 1.2rem;
+    .details {
+      border: solid 1px #ccc;
+      background-color: #efefef;
+    }
+    .rowflex {
+      margin-bottom: 12px;
+    }
   }
-  td.month-insert {
-    font-size: .7rem;
-    color: #777;
-    text-transform: uppercase;
+
+  .job-request-item {
     background-color: white;
-    box-shadow: none;
+    margin-bottom: 6px;
+  }
+
+  .contact-buttons {
+    .btn {
+      background-color: beige;
+      color: $green;
+    }
   }
 }

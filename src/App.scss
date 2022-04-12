@@ -1,3 +1,4 @@
+@import "@fontsource/roboto";
 @import "css/colors.scss";
 @import "css/header.scss";
 @import "css/content_container.scss";
@@ -62,7 +63,9 @@ body.lmu-klinikum {
       border-color: $dark-green;
     }
   }
-
+  input[type="checkbox"] + label {
+    margin-top: 0;
+  }
 }
 
 
@@ -77,4 +80,8 @@ body.lmu-klinikum {
 
 .rowflex {
   display: flex;
+  align-items: center;
+}
+.float-right {
+  float: right;
 }

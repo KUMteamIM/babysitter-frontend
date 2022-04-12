@@ -1,33 +1,37 @@
 import React from "react";
-import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { getDisplayName } from "../shared";
 import UserImage from "./UserImage";
 import { User } from "../interfaces";
 
 interface PropDefs {
-  user: User
+  user: User;
+  children?: any;
+  logoFirst?: boolean;
 }
 
-export const TinyProfile = ({user}:PropDefs) => {
-  const [t] = useTranslation();
-
+export const TinyProfile = ({
+  user,
+  children,
+  logoFirst = false,
+}: PropDefs) => {
+  const path: string = `/profile/${user.id}`;
+  const logo = (
+    <Link to={path}>
+      <UserImage src={user.image} type="small" />
+    </Link>
+  );
   return (
     <React.Fragment>
+      {logoFirst && logo}
       <p className="pr-12">
-        <span className="small">
-          {t("signed_in_as")}
-          <br />
-        </span>
-        <Link to="/profile" className="profile-link">
+        {children}
+        <Link to={path} className="profile-link">
           {getDisplayName(user)}
         </Link>
       </p>
-      <Link to={`/profile/${user.id}`}>
-        <UserImage src={user.image} type="small" />
-      </Link>
+      {!logoFirst && logo}
     </React.Fragment>
-
-  )
-}
+  );
+};
 export default TinyProfile;

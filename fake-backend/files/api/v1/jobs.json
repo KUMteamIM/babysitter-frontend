@@ -6,13 +6,13 @@
     "infant_count": 1,
     "toddler_count": 2,
     "school_age_count": 1,
-    "pay_rate": 33,
+    "pay_rate": 20,
     "smoker": false,
     "required_qualifications": [1, 2, 3],
     "wanted_languages": ["de", "en"],
     "has_pets": false,
-    "start_time": "Dec 08 2024 17:30:38 GMT+0200",
-    "end_time": "Dec 09 2024 03:01:00 GMT+0200",
+    "start_time": "Dec 08 2024 22:30:38 GMT+0200",
+    "end_time": "Dec 09 2024 03:00:38 GMT+0200",
     "owner": {},
     "owner_id": 1,
     "taker_id": null,
@@ -38,7 +38,7 @@
     "job_requests": [{ "id": 5 }]
   },
   {
-    "id": 2,
+    "id": 3,
     "status": "booked",
     "location": null,
     "description": " I tested the code again and setting padding for Grid is not the way to go.",
@@ -55,5 +55,24 @@
     "owner": { "id": 2 },
     "taker": { "id": 3 },
     "job_requests": [{ "id": 5 }]
+  },
+  {
+    "id": 4,
+    "status": "available",
+    "location": null,
+    "description": " I tested the code again and setting padding for Grid is not the way to go.",
+    "infant_count": 1,
+    "toddler_count": 1,
+    "school_age_count": 0,
+    "pay_rate": 15,
+    "smoker": false,
+    "required_qualifications": [],
+    "wanted_languages": [],
+    "has_pets": true,
+    "start_time": "Thu Apr 08 2022 15:25:38 GMT+0200",
+    "end_time": "Thu Apr 08 2022 23:30:00 GMT+0200",
+    "owner": { "id": 2 },
+    "taker": { "id": 3 },
+    "job_requests": [{ "id": 6 }, { "id": 7 }]
   }
 ]

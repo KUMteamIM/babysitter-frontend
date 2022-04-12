@@ -1,21 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { Row, Table } from "react-bootstrap";
+import { Table } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import { useApiResponse } from "../../custom_hooks/shared";
-import { Job, JobStatus } from "../../interfaces";
-import { getMonthByIndex, iconByStatus, pathByStatus } from "../../shared";
-import ContentContainer from "../ContentContainer";
+import { Job, JobStatus, RequestParams } from "../../interfaces";
+import { getMonthByIndex } from "../../shared";
+import { JobFilter } from "./JobFilter";
 import JobListEntry from "./JobListEntry";
 import "./jobs.scss";
 import JobsContainer from "./JobsContainer";
 
 interface PropDefs {
   status: JobStatus;
-}
-
-interface RequestParams {
-  status?: JobStatus;
-  limit?: number;
 }
 
 export const JobIndex = ({ status }: PropDefs) => {
@@ -31,21 +26,21 @@ export const JobIndex = ({ status }: PropDefs) => {
 
   const buildList = (): Array<typeof JobListEntry> => {
     if (result[0] && result[0].length) {
-      let lastMonth = new Date("01-01-2000").getMonth();
+      let lastMonth: Date = new Date("01-01-2000")
       return result[0]
         .sort((a: Job, b: Job) => {
           return a.start_time > b.start_time ? -1 : 1;
         })
         .map((job: Job, index: number) => {
-          let startDate = new Date(job.start_time);
+          let startDate: Date = new Date(job.start_time);
           const startMonth = startDate.getMonth();
           let monthInsert = null;
-          if (startMonth > lastMonth) {
-            lastMonth = startMonth;
+          if (startDate.getMonth() > lastMonth.getMonth() || startDate.getFullYear() > lastMonth.getFullYear()) {
+            lastMonth = startDate;
             monthInsert = (
               <tr>
-                <td colSpan={4} className="month-insert">
-                  {getMonthByIndex(startMonth)} {startDate.getFullYear()}
+                <td colSpan={8} className="month-insert">
+                  {getMonthByIndex(startMonth+1)} {startDate.getFullYear()}
                 </td>
               </tr>
             );
@@ -61,9 +56,25 @@ export const JobIndex = ({ status }: PropDefs) => {
     return [];
   };
 
+  const onFilterChange = (newParams:RequestParams):void => {
+    setReqParams(newParams)
+  }
+
   return (
     <JobsContainer result={result} status={status || ""}>
+      <JobFilter onChange={onFilterChange} reqParams={reqParams} withStatus={true} />
       <Table striped className="job-list">
+        <thead>
+          <tr>
+            <th>{t('date')}</th>
+            <th>{t('time')}</th>
+            <th>{t('duration')}</th>
+            <th>{t('kids')}</th>
+            <th>{t('pay_rate')}</th>
+            <th>{t('total_pay')}</th>
+            <th>{t('requests')}</th>
+          </tr>
+        </thead>
         <tbody>{buildList()}</tbody>
       </Table>
     </JobsContainer>

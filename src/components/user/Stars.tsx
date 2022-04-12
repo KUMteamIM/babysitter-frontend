@@ -12,7 +12,7 @@ export const Stars = ({average}:PropDefs) => {
   const starryNight: number[] = [0,1,2,3,4]
   const generateStar = (grade:number): any => {
     let icon = regFaStar
-    if(Math.round(average) === grade) {
+    if(grade !== average && Math.round(average) === grade) {
       icon = faStarHalfStroke
     } else if(average > grade) {
       icon = faStar

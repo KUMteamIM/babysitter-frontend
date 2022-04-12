@@ -22,7 +22,6 @@ const JobsContainer = ({ result, status, children }: PropDefs) => {
         result={result}
         title={title}
         icon={iconByStatus[status]}
-        path={pathByStatus[status] || `/jobs/${status}`}
         className={status}
       >{children}</ContentContainer>
   );

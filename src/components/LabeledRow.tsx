@@ -4,15 +4,15 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 
 interface PropDefs {
-  label: string,
+  label?: string,
   children?: any,
   required: boolean,
-  htmlFor: string,
+  htmlFor?: string,
 }
 
 export const LabeledRow = ({ children, label, required, htmlFor }:PropDefs) => {
   return (
-    <Row className="form-group">
+    <Row>
       <Col sm={4}>
         <label className="control-label" htmlFor={htmlFor}>
           {label}
@@ -26,11 +26,4 @@ export const LabeledRow = ({ children, label, required, htmlFor }:PropDefs) => {
 
 LabeledRow.defaultProps = {
   required: false,
-};
-
-LabeledRow.propTypes = {
-  children: PropTypes.any,
-  htmlFor: PropTypes.string,
-  label: PropTypes.string,
-  required: PropTypes.bool,
 };

@@ -12,7 +12,7 @@ export interface User {
   has_pets: boolean
   pay_rate: number
   qualifications: string[]
-  locations: object[]
+  locations: Location[]
   photo: string
   languages: string[]
   favorites: User[]
@@ -46,6 +46,7 @@ export interface Location {
   zip: string
   city: string
   country: string
+  geo_code?: GeoCode
 }
 
 export interface Job {
@@ -79,6 +80,7 @@ export interface Availability {
 export type AvailabilityStatus = 'not_available' | 'available' | 'on_request'
 
 export interface JobRequest {
+  id: number
   status: string
   type: string
   candidate: User
@@ -103,4 +105,18 @@ export interface DateDetails {
   end_time: Date
   hours: number
   minutes: number
+  milliseconds: number
+  total_pay: number
+  total_kids: number
+}
+
+export interface RequestParams {
+  status?: JobStatus
+  limit?: number
+  page?: number
+  query?: string
+  start_time?: Date
+  end_time?: Date
+  start_hour?: number
+  end_hour?: number
 }

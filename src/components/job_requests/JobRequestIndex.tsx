@@ -9,7 +9,6 @@ import { iconByStatus } from "../../shared";
 import { JobFragment } from "../jobs/JobFragment";
 import TinyProfile from "../TinyProfile";
 import { useCurrentUser } from "../../custom_hooks/user";
-import { JobRequestShow } from "./JobRequestView";
 import JobListEntry from "../jobs/JobListEntry";
 
 export const JobRequestIndex = () => {
@@ -32,7 +31,7 @@ export const JobRequestIndex = () => {
                 <JobFragment job={job} />
               </Accordion.Header>
               <Accordion.Body>
-                <p>Requests</p>
+                <p>{t('requests_for_job')}</p>
                 {job.job_requests.map((jr: JobRequest) => (
                   <TinyProfile user={jr.candidate} key={jr.candidate.id} />
                 ))}

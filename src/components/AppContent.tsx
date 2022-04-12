@@ -8,7 +8,7 @@ import { Home } from "./Home";
 import { JobRequestIndex } from "./job_requests/JobRequestIndex";
 import ProfileIndex from "./user/ProfileIndex";
 import JobView from "./jobs/JobView";
-import { JobRequestShow } from "./job_requests/JobRequestView";
+// import { JobRequest } from "./job_requests/JobRequestDetails";
 import { Bookings } from "./Bookings";
 import { JobListings } from "./jobs/JobListings";
 import { Offers } from "./Offers";
@@ -27,7 +27,7 @@ export const AppContent = () => {
               <Route path="/bookings" element={<Bookings />} />
               <Route path="/listings" element={<JobListings />} />
               <Route path="/jobs/:id" element={<JobView />} />
-              <Route path="/requests/:id" element={<JobRequestShow />} />
+              {/* <Route path="/requests/:id" element={<JobRequestShow />} /> */}
               <Route path="/requests" element={<JobRequestIndex />} />
               <Route path="/profile/:id" element={<ProfileIndex />} />
               <Route path="/profile" element={<ProfileIndex />} />

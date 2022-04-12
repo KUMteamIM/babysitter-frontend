@@ -1,5 +1,6 @@
 import { faFemale, faUser } from "@fortawesome/free-solid-svg-icons";
 import React, { useEffect, useState } from "react";
+import { Row } from "react-bootstrap";
 import { useParams } from "react-router";
 import { useApiResponse } from "../../custom_hooks/shared";
 import { useCurrentUser } from "../../custom_hooks/user";
@@ -30,6 +31,9 @@ export const ProfileIndex = () => {
         <UserDetails user={user} />
       </ContentContainer>
       <Ratings id={user?.id} />
+      <Row>
+        <ContentContainer title="Weitere Annoncen dieses Anbieters" />
+      </Row>
     </>
   );
 };

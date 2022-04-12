@@ -43,10 +43,10 @@ export const getMonthByIndex = (index: number):string => {
  * @param {object}
  * @returns string with last name and first name, i.e. Smith, John
  */
-export const getDisplayName = (user: User|null):string => {
+export const getDisplayName = (user: User|undefined|null):string => {
   if(!user) return ''
   const { title, first_name, last_name } = user
-  return `${title} ${first_name} ${last_name}`;
+  return `${title || ''} ${first_name || ''} ${last_name}`;
 };
 
 /**
@@ -135,13 +135,15 @@ export const passwordValidationSchema = (t:any):any => Yup.object().shape({
   ).oneOf([Yup.ref("password"), null], t("passwords.must_match")),
 });
 
-export const getDateDetails = (job:Job):DateDetails => {
+export const getJobDetails = (job:Job):DateDetails => {
   const end_time = new Date(job.end_time)
   const start_time = new Date(job.start_time)
   const milliseconds = durationInMs(start_time, end_time)
-  const hours = new Date(milliseconds).getHours()
-  const minutes = new Date(milliseconds - (hours*60*1000)).getMinutes()
-  return { end_time, start_time, hours, minutes }
+  const hours = Math.floor(milliseconds / 1000 / 60 / 60)
+  const minutes = new Date(milliseconds - (hours * 60 * 60 * 1000)).getMinutes()
+  const total_kids = job.infant_count + job.toddler_count + job.school_age_count
+  const total_pay = Math.ceil((hours + (minutes/60)) * job.pay_rate)
+  return { end_time, start_time, hours, minutes, milliseconds, total_kids, total_pay }
 }
 
 const defaultDateOptions = {
@@ -181,7 +183,7 @@ export const displayDateMonthYear = (date: Date) => {
  * @param {date} date
  */
 export const displayDateDayMonth = (date: Date) => {
-  return displayDate(date, { month: "numeric", day: "numeric" });
+  return displayDate(date, { month: "numeric", day: "numeric", year: "numeric" });
 };
 /**
  * Display hour and minute
@@ -226,7 +228,7 @@ export const iconByStatus: any = {
 };
 
 export const pathByStatus: any = {
-  booked: "bookings",
-  complete: "bookings",
-  available: "listings",
+  booked: "/bookings",
+  complete: "/bookings",
+  available: "/listings",
 };
