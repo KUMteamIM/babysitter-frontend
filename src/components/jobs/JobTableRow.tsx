@@ -7,7 +7,7 @@ interface PropDefs {
   job: Job;
 }
 
-export const JobListEntry = ({ job }: PropDefs) => {
+export const JobTableRow = ({ job }: PropDefs) => {
   const { pay_rate, id, status, job_requests = [] } = job;
   const { hours, minutes, start_time, end_time, total_kids, total_pay } = getJobDetails(job)
 
@@ -42,4 +42,4 @@ export const JobListEntry = ({ job }: PropDefs) => {
   );
 };
 
-export default JobListEntry;
+export default JobTableRow;

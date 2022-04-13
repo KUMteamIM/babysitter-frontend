@@ -1,5 +1,5 @@
 import React from "react";
-import { JobIndex } from "./jobs/JobIndex";
+import { JobsTable } from "./jobs/JobsTable";
 import { useCurrentUser } from "../custom_hooks/user";
 import { ActionButton } from "./ActionButton";
 import { faFileCirclePlus, faPlusCircle } from "@fortawesome/free-solid-svg-icons";
@@ -10,14 +10,14 @@ export const Bookings = () => {
   if (currentUser?.type === "owner") {
     return (
       <>
-        <JobIndex status="booked" />
-        <JobIndex status="complete" />
+        <JobsTable status="booked" />
+        <JobsTable status="complete" />
       </>
     );
   } else {
     return (
       <>
-        <JobIndex status="booked" />
+        <JobsTable status="booked" />
       </>
     );
   }

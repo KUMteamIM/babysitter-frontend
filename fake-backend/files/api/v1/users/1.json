@@ -11,8 +11,12 @@
       "city": "München",
       "postal_code": "80336",
       "phone": "+4989440054641",
-      "street": "Pettenkoferstraße 8"
+      "street": "Pettenkoferstraße 8",
+      "geo_code": "48.275112,16.3289601"
     },
-    "image": "/images/danger.jpg"
+    "image": "/images/danger.jpg",
+    "bio": "well hello there",
+    "average_rating": 4,
+    "pay_rate": 20
   }
 }

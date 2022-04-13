@@ -17,6 +17,7 @@ export interface User {
   languages: string[]
   favorites: User[]
   reviews: Rating[]
+  jobs: Job[]
   average_rating: number
   type: UserType
   image: string
@@ -119,4 +120,5 @@ export interface RequestParams {
   end_time?: Date
   start_hour?: number
   end_hour?: number
+  user_id?: number|string
 }

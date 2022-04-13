@@ -1,0 +1,21 @@
+{
+  "data": {
+    "id": "2",
+    "type": "taker",
+    "title": "",
+    "first_name": "Johnny B.",
+    "last_name": "Good",
+    "email": "johnny@specter.com",
+    "location": {
+      "city": "Wien",
+      "postal_code": "1180",
+      "phone": "+4989440054641",
+      "street": "Abt-Karl-Gasse 19",
+      "geo_code": "48.2244093,16.3392935"
+    },
+    "image": "/images/danger.jpg",
+    "bio": "Taker Profile",
+    "average_rating": 3.9,
+    "pay_rate": 100
+  }
+}

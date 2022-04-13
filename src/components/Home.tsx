@@ -1,5 +1,5 @@
 import React from "react";
-import { JobIndex } from "./jobs/JobIndex";
+import { JobsTable } from "./jobs/JobsTable";
 import { useCurrentUser } from "../custom_hooks/user";
 import { Favorites } from "./Favorites";
 import { JobRequestIndex } from "./job_requests/JobRequestIndex";
@@ -10,17 +10,17 @@ export const Home = () => {
   if (currentUser?.type === "owner") {
     return (
       <>
-        <JobIndex status="booked" />
-        <JobIndex />
+        <JobsTable status="booked" />
+        <JobsTable />
         <JobRequestIndex />
-        <JobIndex status="complete" />
+        <JobsTable status="complete" />
         <Favorites />
       </>
     );
   } else {
     return (
       <>
-        <JobIndex status="booked" />
+        <JobsTable status="booked" />
       </>
     );
   }

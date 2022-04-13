@@ -9,7 +9,7 @@ import { iconByStatus } from "../../shared";
 import { JobFragment } from "../jobs/JobFragment";
 import TinyProfile from "../TinyProfile";
 import { useCurrentUser } from "../../custom_hooks/user";
-import JobListEntry from "../jobs/JobListEntry";
+import JobTableRow from "../jobs/JobTableRow";
 
 export const JobRequestIndex = () => {
   const [t] = useTranslation();
@@ -51,7 +51,7 @@ export const JobRequestIndex = () => {
     return (
       <Table striped className="job-list">
         {entries.map((job: Job, index: number): any => {
-          return <JobListEntry job={job} key={index.toString()} />;
+          return <JobTableRow job={job} key={index.toString()} />;
         })}
       </Table>
     );

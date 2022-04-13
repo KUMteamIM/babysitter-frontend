@@ -6,7 +6,7 @@ import Row from "react-bootstrap/Row";
 import LoginForm from "./LoginForm";
 import { Home } from "./Home";
 import { JobRequestIndex } from "./job_requests/JobRequestIndex";
-import ProfileIndex from "./user/ProfileIndex";
+import UserView from "./user/UserView";
 import JobView from "./jobs/JobView";
 // import { JobRequest } from "./job_requests/JobRequestDetails";
 import { Bookings } from "./Bookings";
@@ -29,11 +29,12 @@ export const AppContent = () => {
               <Route path="/jobs/:id" element={<JobView />} />
               {/* <Route path="/requests/:id" element={<JobRequestShow />} /> */}
               <Route path="/requests" element={<JobRequestIndex />} />
-              <Route path="/profile/:id" element={<ProfileIndex />} />
-              <Route path="/profile" element={<ProfileIndex />} />
+              <Route path="/users/:id" element={<UserView />} />
+              <Route path="/profile" element={<UserView />} />
               {/* <Route path="/profile/edit" element={<ProfileEditor />} /> */}
               <Route path="/favorites" element={<Favorites />} />
               <Route path="/offers" element={<Offers />} />
+              <Route path="/users/:id" element={<Offers />} />
               <Route path="/" element={<Home />} />
             </>
           ) : (

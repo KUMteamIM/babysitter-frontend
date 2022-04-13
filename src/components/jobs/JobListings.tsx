@@ -6,7 +6,7 @@ import { Col, Container } from "react-bootstrap";
 import { ActionButton } from "../ActionButton"
 import ContentContainer from "../ContentContainer";
 import NewListingButton from "../NewListingButton";
-import { JobIndex } from "./JobIndex";
+import { JobsTable } from "./JobsTable";
 
 export const JobListings = () => {
   // TODO: owner sees their own listings only
@@ -14,7 +14,7 @@ export const JobListings = () => {
   // filter in backend according to user role?
   return (
     <React.Fragment>
-      <JobIndex status="available" />
+      <JobsTable status="available" />
       <Col sm={3}>
         <NewListingButton />
       </Col>

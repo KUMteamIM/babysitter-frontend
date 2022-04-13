@@ -42,7 +42,7 @@ export const JobFilter = ({
     setStates(ns);
   };
 
-  const [expand, setExpand] = useState(true);
+  const [expand, setExpand] = useState(false);
 
   const onPeriodChange = (e: any): void => {
     let today: Date = new Date()

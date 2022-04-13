@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
 import ax from "../axios";
+import { RequestParams } from "../interfaces";
 
 export const useApiResponse = (path: string, method: string = 'get', params: any = null): Array<any> => {
   const [response, setResponse] = useState<any>(null)
   const [error, setError] = useState<Error|null>(null)
   const [loading, setLoading] = useState<boolean>(false)
+  const [myParams, setMyParams] = useState<any>(null)
 
   useEffect(() => {
     if(!path) return
+
     let promise: any;
     setError(null)
     setLoading(true)
@@ -27,7 +30,13 @@ export const useApiResponse = (path: string, method: string = 'get', params: any
       setLoading(false)
       setError(e)
     })
-  }, [path, params, method])
+  }, [path, method, myParams])
+
+  useEffect(() => {
+    if(JSON.stringify(params) !== JSON.stringify(myParams)) {
+      setMyParams(params)
+    }
+  }, [params])
 
   return [response, loading, error]
 }

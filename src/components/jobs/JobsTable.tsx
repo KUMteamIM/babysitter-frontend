@@ -5,15 +5,16 @@ import { useApiResponse } from "../../custom_hooks/shared";
 import { Job, JobStatus, RequestParams } from "../../interfaces";
 import { getMonthByIndex } from "../../shared";
 import { JobFilter } from "./JobFilter";
-import JobListEntry from "./JobListEntry";
+import JobTableRow from "./JobTableRow";
 import "./jobs.scss";
 import JobsContainer from "./JobsContainer";
 
 interface PropDefs {
-  status: JobStatus;
+  status?: JobStatus;
+  requestParams?: RequestParams;
 }
 
-export const JobIndex = ({ status }: PropDefs) => {
+export const JobsTable = ({ status, requestParams }: PropDefs) => {
   const [t] = useTranslation();
   const [reqParams, setReqParams] = useState<RequestParams | null>(null);
   const result = useApiResponse("jobs", "get", reqParams);
@@ -24,7 +25,11 @@ export const JobIndex = ({ status }: PropDefs) => {
     setReqParams(nrp);
   }, [status]);
 
-  const buildList = (): Array<typeof JobListEntry> => {
+  useEffect(() => {
+    if(requestParams) setReqParams(requestParams);
+  }, [requestParams]);
+
+  const buildList = (): Array<typeof JobTableRow> => {
     if (result[0] && result[0].length) {
       let lastMonth: Date = new Date("01-01-2000")
       return result[0]
@@ -48,7 +53,7 @@ export const JobIndex = ({ status }: PropDefs) => {
           return (
             <React.Fragment key={index}>
               {monthInsert}
-              <JobListEntry job={job} />
+              <JobTableRow job={job} />
             </React.Fragment>
           );
         });
@@ -61,7 +66,7 @@ export const JobIndex = ({ status }: PropDefs) => {
   }
 
   return (
-    <JobsContainer result={result} status={status || ""}>
+    <JobsContainer result={result} status={status}>
       <JobFilter onChange={onFilterChange} reqParams={reqParams} withStatus={true} />
       <Table striped className="job-list">
         <thead>
@@ -79,8 +84,4 @@ export const JobIndex = ({ status }: PropDefs) => {
       </Table>
     </JobsContainer>
   );
-};
-
-JobIndex.defaultProps = {
-  status: "available",
 };
