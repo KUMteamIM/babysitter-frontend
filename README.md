@@ -1,6 +1,6 @@
 # Babysitter-Frontend
 
-React frontend for Babysitterbörse.
+Frontend in React-Typescript for Babysitterbörse.
 
 ## Setup
 
