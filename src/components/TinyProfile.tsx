@@ -15,7 +15,7 @@ export const TinyProfile = ({
   children,
   logoFirst = false,
 }: PropDefs) => {
-  const path: string = `/profile/${user.id}`;
+  const path: string = `/users/${user.id}`;
   const logo = (
     <Link to={path}>
       <UserImage src={user.image} type="small" />

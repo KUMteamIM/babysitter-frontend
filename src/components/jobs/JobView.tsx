@@ -20,7 +20,7 @@ export const JobView = () => {
   const result = useApiResponse(`/jobs/${id}`);
   // TODO: when owner, show taker
   // TODO: when taker, show owner
-  const userDetails = useApiResponse(`/users/${id}`);
+  const userDetails = useApiResponse(job?.owner.id ? `/users/${job?.owner.id}` : '');
   const [t] = useTranslation();
   const currentUser = useCurrentUser();
 

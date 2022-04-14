@@ -80,7 +80,9 @@ body.lmu-klinikum {
 
 .rowflex {
   display: flex;
-  align-items: center;
+}
+.space-between {
+  justify-content: space-between;
 }
 .float-right {
   float: right;

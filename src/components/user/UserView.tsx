@@ -6,9 +6,9 @@ import { useParams } from "react-router";
 import { useApiResponse } from "../../custom_hooks/shared";
 import { useCurrentUser } from "../../custom_hooks/user";
 import { User } from "../../interfaces";
-import { getDisplayName, iconByStatus } from "../../shared";
+import { getDisplayName } from "../../shared";
 import ContentContainer from "../ContentContainer";
-import { JobsTable } from "../jobs/JobsTable";
+import JobRow from "../jobs/JobRow";
 import { Ratings } from "./Ratings";
 import { UserDetails } from "./UserDetails";
 
@@ -20,12 +20,12 @@ export const UserView = () => {
   const [user, setUser] = useState<User | null>(null);
 
   const wantedId: string = id || (currentUser ? currentUser.id : '')
-  const result = useApiResponse(wantedId ? `users/${wantedId}` : '')
-  const jobResult = useApiResponse(wantedId ? `jobs` : '', 'get', { user_id: wantedId })
+  const userData = useApiResponse(wantedId ? `users/${wantedId}` : '')
+  const jobData = useApiResponse(wantedId ? `jobs` : '', 'get', { user_id: wantedId })
 
   useEffect(() => {
-    if(result[0]) setUser(result[0].data);
-  }, [result]);
+    if(userData[0]) setUser(userData[0].data);
+  }, [userData]);
 
   const icon = user?.type === 'owner' ? faFemale : faUser
 
@@ -33,17 +33,19 @@ export const UserView = () => {
 
   return (
     <>
-      <ContentContainer result={result} icon={icon} title={getDisplayName(user)}>
+    <Row>
+      <ContentContainer result={userData} icon={icon} title={getDisplayName(user)}>
         <UserDetails user={user} />
       </ContentContainer>
       <Ratings id={user?.id} />
-      <Row>
-        {jobResult[0] && jobResult[0].length && (
-          <ContentContainer result={jobResult} title={t(moreTitle)}>
-            offerings
-          </ContentContainer>
-        )}
-      </Row>
+    </Row>
+    <Row>
+      {jobData[0] && jobData[0].length && (
+        <ContentContainer result={jobData} title={t(moreTitle)}>
+          <JobRow data={jobData} />
+        </ContentContainer>
+      )}
+    </Row>
     </>
   );
 };

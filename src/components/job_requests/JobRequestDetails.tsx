@@ -46,7 +46,7 @@ export const JobRequestDetails = ({ job }: PropDefs) => {
       // when available, show accept to everyone
       return job?.job_requests.map((jr: JobRequest) => {
         return (
-          <div className="rowflex p-2 job-request-item" style={{justifyContent: 'space-between'}} key={jr.id}>
+          <div className="rowflex p-2 job-request-details" style={{justifyContent: 'space-between'}} key={jr.id}>
             <div className="rowflex">
               <TinyProfile user={jr.candidate} logoFirst={true}>
                 <Stars average={jr.candidate.average_rating} />

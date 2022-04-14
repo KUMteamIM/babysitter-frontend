@@ -1,15 +1,14 @@
 import React from "react";
+import { Accordion, Table } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
-import ContentContainer from "../ContentContainer";
-import { faPaste } from "@fortawesome/free-solid-svg-icons";
 import { useApiResponse } from "../../custom_hooks/shared";
-import { Accordion, AccordionButtonProps, Table } from "react-bootstrap";
+import { useCurrentUser } from "../../custom_hooks/user";
 import { Job, JobRequest } from "../../interfaces";
 import { iconByStatus } from "../../shared";
-import { JobFragment } from "../jobs/JobFragment";
-import TinyProfile from "../TinyProfile";
-import { useCurrentUser } from "../../custom_hooks/user";
+import ContentContainer from "../ContentContainer";
+import JobItem from "../jobs/JobItem";
 import JobTableRow from "../jobs/JobTableRow";
+import { JobRequestHandler } from "./JobRequestHandler";
 
 export const JobRequestIndex = () => {
   const [t] = useTranslation();
@@ -28,13 +27,10 @@ export const JobRequestIndex = () => {
           return (
             <Accordion.Item eventKey={index.toString()}>
               <Accordion.Header>
-                <JobFragment job={job} />
+                <JobItem job={job} />
               </Accordion.Header>
               <Accordion.Body>
-                <p>{t('requests_for_job')}</p>
-                {job.job_requests.map((jr: JobRequest) => (
-                  <TinyProfile user={jr.candidate} key={jr.candidate.id} />
-                ))}
+                {job.job_requests.map((jr: JobRequest) => <JobRequestHandler job={job} jr={jr} />)}
               </Accordion.Body>
             </Accordion.Item>
           );

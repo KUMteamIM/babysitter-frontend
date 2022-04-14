@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import ContentContainer from "../ContentContainer";
 import { faChild, faChildren, faMobilePhone, faPaperPlane, faStar } from "@fortawesome/free-solid-svg-icons";
-import { DateDetails, Job } from "../../interfaces";
+import { JobDetails, Job } from "../../interfaces";
 import { useApiResponse } from "../../custom_hooks/shared";
 import CommonFieldList from "../CommonFieldList";
 import { Col, Row } from "react-bootstrap";
@@ -10,6 +10,7 @@ import { displayDateDayMonth, displayDateMonthYear, displayHourMinute, getDispla
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope } from "@fortawesome/free-regular-svg-icons";
 import { ActionButton } from "../ActionButton";
+import PayFlag from "../PayFlag";
 
 interface PropDefs {
   job?: Job|null;
@@ -17,7 +18,7 @@ interface PropDefs {
 
 export const JobDetail = ({job}:PropDefs) => {
   const [t] = useTranslation()
-  const [jobDetails, setJobDetails] = useState<DateDetails>()
+  const [jobDetails, setJobDetails] = useState<JobDetails>()
 
   useEffect(() => {
     if(!job) return
@@ -31,16 +32,12 @@ export const JobDetail = ({job}:PropDefs) => {
     <div className="job-detail p-3 rowflex">
       <div style={{width: '49%'}}>
         <div>
-          <span className="small">{t('name')}</span>
-          <h3>{getDisplayName(job?.owner)}</h3>
-        </div>
-        <div>
-          <span className="small">{t('start_time')}</span>
-          <h3>{displayHourMinute(jobDetails.start_time)}</h3>
-        </div>
-        <div>
-          <span className="small">{t('end_time')}</span>
-          <h3>{displayHourMinute(jobDetails.end_time)}</h3>
+          <span className="small">{t('start_time')} - {t('end_time')}</span>
+          <h3>{displayHourMinute(jobDetails.start_time)} - {displayHourMinute(jobDetails.end_time)}
+          <br />
+          {jobDetails.hours}h
+          {jobDetails.minutes > 0 && `:${jobDetails.minutes}m`}
+          </h3>
         </div>
         <div>
           <span className="small">{t('date')}</span>
@@ -52,6 +49,10 @@ export const JobDetail = ({job}:PropDefs) => {
         </div>
       </div>
       <div>
+        <div>
+            <span className="small">{t('name')}</span>
+            <h3>{getDisplayName(job?.owner)}</h3>
+          </div>
         <div>
           <span className="small">{t('address')}</span>
           <h3>{job?.location.street}<br />
@@ -67,13 +68,7 @@ export const JobDetail = ({job}:PropDefs) => {
         </div>
         <div>
           <span className="small">{t('total_pay')}</span>
-          <div className="pay_flag p-2">
-            {jobDetails.hours}
-            {jobDetails.minutes > 0 && `:${jobDetails?.minutes}`}
-            x
-            {job?.pay_rate} &euro;
-            <h1>{jobDetails.total_pay} &euro;</h1>
-          </div>
+          <PayFlag jobDetails={{...jobDetails, pay_rate: job?.pay_rate}} />
         </div>
       </div>
     </div>

@@ -33,15 +33,16 @@ body.lmu-klinikum {
     .small {
       text-transform: uppercase;
     }
-    .pay_flag {
-      background-color: $yellow;
-      color: $green;
-      border-right-style: dashed;
-      border-right-color: $green;
-      border-right-width: 3px;
-      border-radius: 2px;
-      h2 { color: $green; }
-    }
+  }
+
+  .pay-flag {
+    background-color: $yellow;
+    color: $green;
+    border-right-style: dashed;
+    border-right-color: $green;
+    border-right-width: 3px;
+    border-radius: 2px;
+    h2 { color: $green; }
   }
 
   .job-filters {
@@ -55,15 +56,23 @@ body.lmu-klinikum {
     }
   }
 
-  .job-request-item {
+  .job-request-details {
     background-color: white;
     margin-bottom: 6px;
+    cursor: pointer;
+    &:hover {
+      box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.06);
+    }
   }
 
   .contact-buttons {
     .btn {
-      background-color: beige;
+      background-color: $yellow;
       color: $green;
+      border: 0;
+      &:hover {
+        background-color: white;
+      }
     }
   }
 }

@@ -101,7 +101,7 @@ export type JobStatus =  'draft' | 'available' | 'invisble' | 'booked' | 'cancel
 export type JobRequestStatus =  'open' | 'canceled' | 'expired' | 'declined' | 'accepted'
 export type JobRequestType =  'offer' | 'request'
 
-export interface DateDetails {
+export interface JobDetails {
   start_time: Date
   end_time: Date
   hours: number
@@ -109,6 +109,7 @@ export interface DateDetails {
   milliseconds: number
   total_pay: number
   total_kids: number
+  pay_rate: number
 }
 
 export interface RequestParams {

@@ -1,0 +1,58 @@
+{
+  "id": 1,
+  "status": "available",
+  "description": "Some description",
+  "infant_count": 1,
+  "toddler_count": 1,
+  "school_age_count": 0,
+  "pay_rate": 23,
+  "smoker": true,
+  "required_qualifications": [],
+  "wanted_languages": [],
+  "has_pets": false,
+  "start_time": "Fri Apr 09 2022 12:25:38 GMT+0200",
+  "end_time": "Fri Apr 09 2022 14:55:38 GMT+0200",
+  "owner": {
+    "id": 3,
+    "first_name": "Johnny",
+    "last_name": "B:good",
+    "email": "dim@sum.com",
+    "bio": "I am the other job's owner.",
+    "title": "",
+    "location": {
+      "street": "Pettenkofer Str.",
+      "street2": "",
+      "city": "München",
+      "country": "de",
+      "zip": "80333"
+    }
+  },
+  "taker": null,
+  "job_requests": [
+    {
+      "id": 5,
+      "candidate": {
+        "id": 3,
+        "first_name": "fool",
+        "last_name": "baz",
+        "average_rating": 1.2
+      }
+    },
+    {
+      "id": 6,
+      "candidate": {
+        "id": 4,
+        "first_name": "Borg",
+        "last_name": "Zorg",
+        "average_rating": 4.7
+      }
+    }
+  ],
+  "location": {
+    "street": "Schlagbaumstr. 9",
+    "street2": "",
+    "zip": "80333",
+    "city": "München",
+    "country": "de"
+  }
+}

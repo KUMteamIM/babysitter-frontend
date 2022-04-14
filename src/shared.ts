@@ -2,13 +2,16 @@ import {
   faChild,
   faClipboardCheck,
   faClipboardQuestion,
+  faGhost,
   faHistory,
   faPaste,
-  faSearch
+  faPencil,
+  faSearch,
+  faXmark
 } from "@fortawesome/free-solid-svg-icons";
 import { getI18n } from "react-i18next";
 import * as Yup from "yup";
-import { DateDetails, GeoCode, Job, User } from "./interfaces";
+import { JobDetails, GeoCode, Job, User } from "./interfaces";
 
 /**
  * @param {string} geocode | comma-seperated latitude and longitude
@@ -135,7 +138,7 @@ export const passwordValidationSchema = (t:any):any => Yup.object().shape({
   ).oneOf([Yup.ref("password"), null], t("passwords.must_match")),
 });
 
-export const getJobDetails = (job:Job):DateDetails => {
+export const getJobDetails = (job:Job):JobDetails => {
   const end_time = new Date(job.end_time)
   const start_time = new Date(job.start_time)
   const milliseconds = durationInMs(start_time, end_time)
@@ -143,7 +146,7 @@ export const getJobDetails = (job:Job):DateDetails => {
   const minutes = new Date(milliseconds - (hours * 60 * 60 * 1000)).getMinutes()
   const total_kids = job.infant_count + job.toddler_count + job.school_age_count
   const total_pay = Math.ceil((hours + (minutes/60)) * job.pay_rate)
-  return { end_time, start_time, hours, minutes, milliseconds, total_kids, total_pay }
+  return { end_time, start_time, hours, minutes, milliseconds, total_kids, total_pay, pay_rate: job.pay_rate }
 }
 
 const defaultDateOptions = {
@@ -225,6 +228,9 @@ export const iconByStatus: any = {
   requested: faClipboardQuestion,
   available: faSearch,
   complete: faHistory,
+  draft: faPencil,
+  canceled: faXmark,
+  invisble: faGhost
 };
 
 export const pathByStatus: any = {
