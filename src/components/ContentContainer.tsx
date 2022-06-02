@@ -1,7 +1,6 @@
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import CommonSpinner from "@lmu-med/ci-components/dist/components/CommonSpinner";
 import React from "react";
-import { Container } from "react-bootstrap";
 import Col from "react-bootstrap/Col";
 import Alert from "react-bootstrap/Alert";
 import { IconHeader } from "./IconHeader";

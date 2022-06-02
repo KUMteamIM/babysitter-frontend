@@ -1,17 +1,16 @@
-import React from "react";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import { User } from "../../interfaces";
-import UserImage from "../UserImage";
-import Stars from "./Stars";
-import CommonFieldList from "../CommonFieldList";
-import { getDisplayName } from "../../shared";
+import { faDog, faFemale, faMale, faSmoking, faSmokingBan } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faDog, faFemale, faMale, faShieldDog, faSmoking, faSmokingBan } from "@fortawesome/free-solid-svg-icons";
-import LocationView from "../LocationView";
-import { Link } from "react-router-dom";
+import React from "react";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router";
+import { Link } from "react-router-dom";
+import { User } from "../../interfaces";
+import { getDisplayName } from "../../shared";
+import LocationView from "../LocationView";
+import UserImage from "../UserImage";
+import Stars from "./Stars";
 
 interface PropDefs {
   user: User|null;
@@ -20,9 +19,6 @@ interface PropDefs {
 export const UserDetails = ({ user }: PropDefs) => {
   const [t] = useTranslation()
   const location = useLocation()
-
-  console.log(location.pathname)
-
 
   if(!user) return null;
 

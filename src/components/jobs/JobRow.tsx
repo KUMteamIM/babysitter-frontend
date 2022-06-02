@@ -5,16 +5,19 @@ import ContentContainer from "../ContentContainer";
 import { JobCol } from "./JobCol";
 
 interface PropDefs {
-  data: Job[]
+  data: Job[];
 }
 
-export const JobRow = ({data}:PropDefs) => {
-  if(!data || !data.length) return null
+export const JobRow = ({ data }: PropDefs) => {
+  if (!data || !data.length) return null;
+
   return (
     <Row className="p-3">
-      {data.map((job:Job) => <JobCol job={job} />)}
+      {data.map((job: Job, index: number) => (
+        <JobCol job={job} key={index.toString()} />
+      ))}
     </Row>
-  )
-}
+  );
+};
 
-export default JobRow
+export default JobRow;

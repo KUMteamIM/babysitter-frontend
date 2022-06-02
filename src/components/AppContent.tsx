@@ -13,6 +13,7 @@ import { Bookings } from "./Bookings";
 import { JobListings } from "./jobs/JobListings";
 import { Offers } from "./Offers";
 import { Favorites } from "./Favorites";
+import JobListingEditor from "./jobs/JobListingEditor";
 
 export const AppContent = () => {
   const currentUser = useCurrentUser();
@@ -25,6 +26,7 @@ export const AppContent = () => {
             <>
               <Route path="/login" element={<LoginForm />}></Route>
               <Route path="/bookings" element={<Bookings />} />
+              <Route path="/listings/new" element={<JobListingEditor />} />
               <Route path="/listings" element={<JobListings />} />
               <Route path="/jobs/:id" element={<JobView />} />
               {/* <Route path="/requests/:id" element={<JobRequestShow />} /> */}
@@ -34,7 +36,6 @@ export const AppContent = () => {
               {/* <Route path="/profile/edit" element={<ProfileEditor />} /> */}
               <Route path="/favorites" element={<Favorites />} />
               <Route path="/offers" element={<Offers />} />
-              <Route path="/users/:id" element={<Offers />} />
               <Route path="/" element={<Home />} />
             </>
           ) : (

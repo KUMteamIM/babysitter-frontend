@@ -1,17 +1,14 @@
 import {
-  faChild,
   faClipboardCheck,
   faClipboardQuestion,
   faGhost,
-  faHistory,
-  faPaste,
-  faPencil,
+  faHistory, faPencil,
   faSearch,
   faXmark
 } from "@fortawesome/free-solid-svg-icons";
 import { getI18n } from "react-i18next";
 import * as Yup from "yup";
-import { JobDetails, GeoCode, Job, User } from "./interfaces";
+import { GeoCode, Job, JobDetails, User } from "./interfaces";
 
 /**
  * @param {string} geocode | comma-seperated latitude and longitude
@@ -238,3 +235,57 @@ export const pathByStatus: any = {
   complete: "/bookings",
   available: "/listings",
 };
+
+
+/**
+ * Check if d1 is before d2 (exclude equal date)
+ * @param {date} d1
+ * @param {date} d2
+ * @param {boolean} considerTime
+ * @returns boolean
+ */
+ export const before = (d1: Date, d2: Date, considerTime: boolean) => {
+  return (
+    considerTime ? (d1 < d2) :
+      (d1.getFullYear() < d2.getFullYear()) ||
+      (d1.getMonth() < d2.getMonth()) ||
+      (d1.getDate() < d2.getDate())
+  );
+};
+
+/**
+ * Check if d1 is on or after d2
+ * @param {date} d1
+ * @param {date} d2
+ * @param {boolean} considerTime
+ * @returns boolean
+ */
+export const onOrAfter = (d1: Date, d2: Date, considerTime: boolean) => {
+  return (
+    !before(d1, d2, considerTime)
+  );
+};
+
+/**
+ * Check if two dates are on the same day
+ * @param {date} d1
+ * @param {date} d2
+ */
+export const sameDay = (d1: Date, d2: Date) => {
+  return (
+    d1.getFullYear() === d2.getFullYear() &&
+    d1.getMonth() === d2.getMonth() &&
+    d1.getDate() === d2.getDate()
+  );
+};
+
+/**
+ * checks if a date is in the past, not considering hours
+ * @param {Date} date
+ * @returns boolean
+ */
+export function isPast(date: Date) {
+  let now = new Date();
+  now.setHours(0, 0, 0, 0)
+  return date.getTime() < now.getTime()
+}

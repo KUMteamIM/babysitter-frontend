@@ -10,12 +10,14 @@ interface PropDefs {
 
 export const JobItem = ({job}:PropDefs) => {
   const jobDetails = getJobDetails(job);
+  const icon = iconByStatus[job.status]
 
   return (
     <div className="p-2 job-request-details rowflex" style={{width: '100%'}}>
+      {!!icon && (
       <h4>
-        <FontAwesomeIcon icon={iconByStatus[job.status]} />
-      </h4>
+        <FontAwesomeIcon icon={icon} />
+      </h4>)}
       <div className="rowflex space-between"
         style={{ width: "100%", marginLeft: "8px" }}
       >

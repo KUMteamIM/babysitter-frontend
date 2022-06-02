@@ -1,5 +1,5 @@
 import { faStar } from "@fortawesome/free-solid-svg-icons";
-import React, { useEffect } from "react";
+import React from "react";
 import { Col, Row } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import { useApiResponse } from "../../custom_hooks/shared";
@@ -19,13 +19,13 @@ export const Ratings = ({ id }: PropDefs) => {
       <Row className="p-3">
         <Col>
           {result && result[0] && result[0].length ? (
-            result[0].map((rating: Rating) => {
+            result[0].map((rating: Rating, index: number) => {
               return (
-                <>
+                <React.Fragment key={index.toString()}>
                   <Stars average={rating.stars} />
                   <i>{rating.review}</i>
                   <br />
-                </>
+                </React.Fragment>
               );
             })
           ) : (

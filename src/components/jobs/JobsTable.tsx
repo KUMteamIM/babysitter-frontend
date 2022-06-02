@@ -29,7 +29,7 @@ export const JobsTable = ({ status, requestParams }: PropDefs) => {
     if(requestParams) setReqParams(requestParams);
   }, [requestParams]);
 
-  const buildList = (): Array<typeof JobTableRow> => {
+  const buildList = (): Array<any> => {
     if (result[0] && result[0].length) {
       let lastMonth: Date = new Date("01-01-2000")
       return result[0]

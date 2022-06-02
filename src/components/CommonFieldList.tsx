@@ -1,22 +1,31 @@
 import React from "react";
 
 interface PropDefs {
-  data: any
+  data: any;
 }
 
-export const CommonFieldList = ({data}:PropDefs) => {
-  if(!data) return null
-  const dataEntries = Object.entries(data).map(([key, value]) => {
-    if(typeof value !== 'object') return <li key={key}>{key}: {value}</li>
-  })
+export const CommonFieldList = ({ data }: PropDefs) => {
+  if (!data) return null;
+
+  const buildData = () => {
+    const entries = Object.entries(data).map(([key, value]) => {
+      if (typeof value !== "object")
+        return (
+          <li key={key}>
+            <>
+              {key}: {value}
+            </>
+          </li>
+        );
+    });
+    return entries;
+  };
 
   return (
     <div>
-      <ul>
-        {dataEntries}
-      </ul>
+      <ul>{buildData()}</ul>
     </div>
-  )
-}
+  );
+};
 
-export default CommonFieldList
+export default CommonFieldList;
