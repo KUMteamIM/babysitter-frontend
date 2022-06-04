@@ -1,0 +1,13 @@
+body.lmu-klinikum {
+  .common-form {
+    input, input[type="text"] {
+      width: unset;
+    }
+    .numbers {
+      width: 80px;
+    }
+    textarea {
+      height: 80px;
+    }
+  }
+}

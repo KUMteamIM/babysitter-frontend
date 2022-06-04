@@ -6,12 +6,20 @@
     "first_name": "Max",
     "last_name": "Monsterman",
     "email": "htk@it-ref.de",
-    "location": {
+    "locations": [{
+      "id": 1,
       "city": "München",
       "postal_code": "80336",
       "phone": "+4989440054641",
-      "street": "Pettenkoferstraße 8"
-    },
+      "street": "Pettenkoferstraße 8",
+      "geo_code": "48.275112,16.3289601"
+    },{
+      "id": 6,
+      "city": "Warndorf",
+      "postal_code": "80804",
+      "street": "Isoldenstr. 120",
+      "geo_code": "48.275112,16.3289601"
+    }],
     "image": "/images/danger.jpg",
     "average_rating": 3.2
   }

@@ -4,7 +4,7 @@ import { initReactI18next } from "react-i18next";
 i18n.use(initReactI18next).init({
   returnObjects: true,
   lng: "de",
-  debug: window.location.host.includes("localhost"),
+  debug: false, // window.location.host.includes("localhost"),
   resources: {
     de: {
       translation: {
@@ -125,7 +125,8 @@ i18n.use(initReactI18next).init({
           taker: 'Auftragnehmer',
           job_requests: 'Anfragen',
           introduction_text: 'Alle Daten des Gesuchs',
-          submit: 'Neues Gesuch einstellen'
+          submit: 'Neues Gesuch einstellen',
+          times: 'Arbeitszeit',
         },
         kids: 'Kinder',
         listings: 'Gesuche',
@@ -152,6 +153,7 @@ i18n.use(initReactI18next).init({
         ok: 'OK',
         password: 'Passwort',
         pay_rate: '€/h',
+        preview: 'Vorschau',
         ratings: 'Eindrücke',
         requests: 'Anfragen',
         total_pay: 'Bezahlung',
@@ -162,14 +164,18 @@ i18n.use(initReactI18next).init({
           header: 'Neuregistrierung',
         },
         status: 'Status',
-        time: 'Zeit',
         until: 'bis',
         times: 'Zeiten',
         sign_in: 'Anmelden',
         start_time: 'Start',
         view_all: 'Alle ansehen',
         view_profile: 'Profil ansehen',
-        set_filters: 'Filtern'
+        set_filters: 'Filtern',
+        validation: {
+          start_before_end: 'Startzeit muss vor Endzeit sein',
+          field_required: '%{field} muss ausgefüllt sein.',
+          same_day: 'Start und Ende müssen am selben Tag sein.'
+        }
       },
     },
   },

@@ -30,7 +30,7 @@ export const JobRequestIndex = () => {
                 <JobItem job={job} />
               </Accordion.Header>
               <Accordion.Body>
-                {job.job_requests.map((jr: JobRequest) => <JobRequestHandler job={job} jr={jr} />)}
+                {job.job_requests?.map((jr: JobRequest) => <JobRequestHandler job={job} jr={jr} />)}
               </Accordion.Body>
             </Accordion.Item>
           );

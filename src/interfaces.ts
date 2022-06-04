@@ -42,6 +42,7 @@ export interface DefaultState {
 }
 
 export interface Location {
+  id: number
   street: string
   street2: string
   zip: string
@@ -53,21 +54,21 @@ export interface Location {
 export interface Job {
   id: string
   status: JobStatus
-  location: Location
+  location?: Location
   description: string
   infant_count: number
   toddler_count: number
   school_age_count: number
   pay_rate: number
   smoker: boolean
-  required_qualifications: Qualification[]
-  wanted_languages: string[]
+  required_qualifications?: Qualification[]
+  wanted_languages?: string[]
   has_pets: boolean
-  start_time: Date|string
-  end_time: Date|string
-  owner: User
-  taker: User
-  job_requests: JobRequest[]
+  start_time: Date
+  end_time: Date
+  owner?: User|null
+  taker?: User|null
+  job_requests?: JobRequest[]
 }
 
 export interface Availability {

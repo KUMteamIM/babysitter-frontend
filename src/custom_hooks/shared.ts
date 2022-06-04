@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import ax from "../axios";
-import { RequestParams } from "../interfaces";
 
 export const useApiResponse = (path: string, method: string = 'get', params: any = null): Array<any> => {
   const [response, setResponse] = useState<any>(null)

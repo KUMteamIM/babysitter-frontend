@@ -1,0 +1,50 @@
+@import 'variables'
+.pointer
+  cursor: pointer
+
+.calendar-months
+  width: 100%
+  margin-top: 12px
+  border-radius: 2px
+  .skip-months, .calendar-days
+    width: calc(100% - 12px)
+    padding: 6px
+  .skip-months
+    border-bottom: 1px solid $medium-grey
+
+  .calendar-days
+    font-size: .7rem
+    margin-top: 6px
+    .calendar-day-labels
+      padding-top: 2px
+      padding-bottom: 2px
+      text-transform: uppercase
+      justify-content: space-around
+    .calendar-day-buttons
+      margin-bottom: 12px
+      button
+        cursor: pointer
+        width: calc(14.2% - 4px)
+        float: left
+        border: 0
+        background-color: $light-grey
+        border-radius: 24px
+        margin: 2px
+        min-height: 24px
+        font-weight: bold
+        padding: 1px
+        &:focus
+          outline: none
+        &:hover, &:active
+          background-color: $light-green
+
+      .other-month
+        opacity: .7
+        color: $medium-grey
+      .day-chosen
+        background-color: $ok-green
+        box-shadow: $stronger-shadow
+        color: white
+        transform: scale(1.1)
+        &:hover, &:active
+          background-color: $ok-green

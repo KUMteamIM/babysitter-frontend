@@ -2,15 +2,13 @@ import { faHand } from "@fortawesome/free-regular-svg-icons";
 import {
   faBan,
   faHandshake,
-  faHandshakeSlash,
+  faHandshakeSlash
 } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useEffect } from "react";
+import React from "react";
 import { Col, Row } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import { useCurrentUser } from "../../custom_hooks/user";
 import { Job, JobRequest } from "../../interfaces";
-import { iconByStatus } from "../../shared";
 import { ActionButton } from "../ActionButton";
 import TinyProfile from "../TinyProfile";
 import Stars from "../user/Stars";
@@ -23,8 +21,8 @@ export const JobRequestDetails = ({ job }: PropDefs) => {
   const [t] = useTranslation();
   const currentUser = useCurrentUser();
   const amTaker = job?.taker?.id.toString() === currentUser?.id.toString();
-  const amOwner = job?.owner.id.toString() === currentUser?.id.toString();
-  const amApplicant = job?.job_requests.find((jr: JobRequest) => {
+  const amOwner = job?.owner?.id.toString() === currentUser?.id.toString();
+  const amApplicant = job?.job_requests?.find((jr: JobRequest) => {
     return jr.candidate?.id.toString() === currentUser?.id.toString();
   });
 
@@ -44,7 +42,7 @@ export const JobRequestDetails = ({ job }: PropDefs) => {
     } else if (amOwner) {
       // TODO: when canceled, show accept to others
       // when available, show accept to everyone
-      return job?.job_requests.map((jr: JobRequest) => {
+      return job?.job_requests?.map((jr: JobRequest) => {
         return (
           <div className="rowflex p-2 job-request-details" style={{justifyContent: 'space-between'}} key={jr.id}>
             <div className="rowflex">

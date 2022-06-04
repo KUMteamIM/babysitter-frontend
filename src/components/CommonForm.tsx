@@ -1,13 +1,32 @@
 import PropTypes from "prop-types";
 import { useFormik } from "formik";
-import React, { useState, createElement } from "react";
+import React, { useState, createElement, FormEvent } from "react";
 import { Alert, Button } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import { FormikErrorList } from "./FormikErrorList";
 import CommonSpinner from "@lmu-med/ci-components/dist/components/CommonSpinner";
 import { LabeledRow } from "./LabeledRow";
+import { AxiosResponse } from "axios";
 
 const DEFAULT_INITIAL_VALUES = { first_name: "", last_name: "", email: "" };
+
+interface PropDefs {
+  validationSchema: any,
+  apiEndpoint: Function,
+  fieldsComponent: any,
+  translationScope: string,
+  initialValues?: object,
+  resultOnly: boolean,
+  children?: any,
+  encType?: string,
+  onUpdate?: Function,
+}
+
+interface ApiResponse {
+  status: number,
+  message: string,
+  errors?: string[]
+}
 
 /**
  * Reusable Component that pipes data from "fieldsComponent" prop to
@@ -29,10 +48,11 @@ export const CommonForm = ({
   resultOnly,
   children,
   encType,
-}) => {
+  onUpdate,
+}:PropDefs) => {
   const [t] = useTranslation();
-  const [sending, setSending] = useState(false);
-  const [apiResponse, setApiResponse] = useState(null);
+  const [sending, setSending] = useState<boolean>(false);
+  const [apiResponse, setApiResponse] = useState<ApiResponse|null>(null);
 
   const formik = useFormik({
     initialValues: initialValues || DEFAULT_INITIAL_VALUES,
@@ -42,9 +62,12 @@ export const CommonForm = ({
       setSending(true);
       apiEndpoint(values).then(onApiResult).catch(onApiResult);
     },
+    validate: (val) => {
+      if(onUpdate) onUpdate(val)
+    }
   });
 
-  const onApiResult = (response) => {
+  const onApiResult = (response: AxiosResponse) => {
     setSending(false);
 
     if (!response.hasOwnProperty("request")) {
@@ -79,6 +102,12 @@ export const CommonForm = ({
     );
   }
 
+  const interceptSubmit = (event: FormEvent) => {
+    console.log("why the fuck");
+    event.preventDefault();
+    // formik.handleSubmit()
+  };
+
   const fields = createElement(fieldsComponent, { formik: formik });
   return (
     <div className="common-form form-group p-3">
@@ -86,7 +115,7 @@ export const CommonForm = ({
         <p>{t(translationScope + ".introduction_text")}</p>
       </div>
 
-      <form encType={encType} onSubmit={formik.handleSubmit}>
+      <form encType={encType} onSubmit={interceptSubmit}>
         {fields}
         {children}
         <LabeledRow>

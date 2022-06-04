@@ -20,7 +20,7 @@ export const JobView = () => {
   const result = useApiResponse(`/jobs/${id}`);
   // TODO: when owner, show taker
   // TODO: when taker, show owner
-  const userDetails = useApiResponse(job?.owner.id ? `/users/${job?.owner.id}` : '');
+  const userDetails = useApiResponse(job?.owner?.id ? `/users/${job.owner.id}` : '');
   const [t] = useTranslation();
   const currentUser = useCurrentUser();
 
@@ -29,7 +29,7 @@ export const JobView = () => {
   }, [result]);
 
   // TODO: show taker details when currentUser === owner and status === booked
-  const amOwner = job?.owner.id.toString() === currentUser?.id.toString();
+  const amOwner = job?.owner?.id.toString() === currentUser?.id.toString();
 
   // TODO: show "this is your job" above everything else when currentUser === taker
 

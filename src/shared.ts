@@ -136,14 +136,15 @@ export const passwordValidationSchema = (t:any):any => Yup.object().shape({
 });
 
 export const getJobDetails = (job:Job):JobDetails => {
-  const end_time = new Date(job.end_time)
-  const start_time = new Date(job.start_time)
-  const milliseconds = durationInMs(start_time, end_time)
+  const milliseconds = durationInMs(job.start_time, job.end_time)
   const hours = Math.floor(milliseconds / 1000 / 60 / 60)
   const minutes = new Date(milliseconds - (hours * 60 * 60 * 1000)).getMinutes()
-  const total_kids = job.infant_count + job.toddler_count + job.school_age_count
+  const total_kids: number = job.infant_count + job.toddler_count + job.school_age_count
   const total_pay = Math.ceil((hours + (minutes/60)) * job.pay_rate)
-  return { end_time, start_time, hours, minutes, milliseconds, total_kids, total_pay, pay_rate: job.pay_rate }
+
+console.log(hours, minutes)
+
+  return { end_time: job.end_time, start_time: job.start_time, hours, minutes, milliseconds, total_kids, total_pay, pay_rate: job.pay_rate }
 }
 
 const defaultDateOptions = {
@@ -159,11 +160,11 @@ const defaultDateOptions = {
  * @param {date} date
  * @param {options} DateOptions
  */
-export const displayDate = (date: Date, options: any) => {
+export const displayDate = (date: Date, options: any = defaultDateOptions) => {
   try {
     return new Intl.DateTimeFormat(
       navigator.language,
-      options || defaultDateOptions
+      options
     ).format(date);
   } catch (e:any) {
     return e.message;
@@ -270,8 +271,9 @@ export const onOrAfter = (d1: Date, d2: Date, considerTime: boolean) => {
  * Check if two dates are on the same day
  * @param {date} d1
  * @param {date} d2
+ * @returns boolean
  */
-export const sameDay = (d1: Date, d2: Date) => {
+export const sameDay = (d1: Date, d2: Date): boolean => {
   return (
     d1.getFullYear() === d2.getFullYear() &&
     d1.getMonth() === d2.getMonth() &&
@@ -284,8 +286,26 @@ export const sameDay = (d1: Date, d2: Date) => {
  * @param {Date} date
  * @returns boolean
  */
-export function isPast(date: Date) {
+export function isPast(date: Date): boolean {
   let now = new Date();
   now.setHours(0, 0, 0, 0)
   return date.getTime() < now.getTime()
 }
+
+export function numericOptions(starts: number = 0, ends: number = 7): Array<number> {
+  let elements = []
+  for (let index = starts; index <= ends; index++) {
+    elements.push(index)
+  }
+  return elements
+}
+
+export const compareAndCall = (currentObj:object, nextObj:object, stateUpdater: Function): void => {
+  if (JSON.stringify(currentObj) !== JSON.stringify(nextObj)) {
+    stateUpdater(nextObj)
+  }
+}
+
+export const selectMinutes: Array<number> = new Array(
+  Math.round(60 / 5)
+).fill(1).map((value, index) => index * 5);
