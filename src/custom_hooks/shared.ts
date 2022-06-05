@@ -43,6 +43,8 @@ export const useApiResponse = (path: string, method: string = 'get', params: any
 
 export const useUser = (id:string|number|undefined):UserHook => {
   const result = useApiResponse(id ? `users/${id}` : '')
+  // TODO: make sure the api response has in fact that extra
+  // property data
   if(result[0] && result[0].hasOwnProperty('data')) {
     const giveAttribute: any = result[0]
     return [giveAttribute.data as User, result[1], result[2]]
