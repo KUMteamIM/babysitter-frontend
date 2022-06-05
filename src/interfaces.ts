@@ -64,8 +64,8 @@ export interface Job {
   required_qualifications?: Qualification[]
   wanted_languages?: string[]
   has_pets: boolean
-  start_time: Date
-  end_time: Date
+  start_time: Date|string
+  end_time: Date|string
   owner?: User|null
   taker?: User|null
   job_requests?: JobRequest[]
@@ -124,3 +124,18 @@ export interface RequestParams {
   end_hour?: number
   user_id?: number|string
 }
+
+export interface ApiResponse {
+  status: number,
+  message: string,
+  errors?: string[]
+}
+
+export interface ApiHook extends Array<object|Job|Array<object>|boolean|Error|null>{0:Array<object>|Array<Job>|object|null; 1:boolean, 2:Error|null}
+
+export interface ApiDataResponse {
+  data: object
+}
+
+export interface JobHook extends Array<Job|boolean|Error|null>{0:Job|null, 1:boolean, 2:Error|null}
+export interface UserHook extends Array<User|boolean|Error|null>{0:User|null, 1:boolean, 2:Error|null}
