@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ax from "../axios";
-import { ApiHook, Job, JobHook, User, UserHook } from "../interfaces";
+import { ApiHook, Job, JobHook, Rating, RatingsHook, User, UserHook } from "../interfaces";
 
 export const useApiResponse = (path: string, method: string = 'get', params: any = null): ApiHook => {
   const [response, setResponse] = useState<any>(null)
@@ -63,4 +63,9 @@ export const useUserJobs = (id:string|number|undefined, params: any = null):ApiH
 export const useLocation = (id:string|number|null):ApiHook => {
   const result = useApiResponse(id ? `/location/${id}` : '')
   return [result[0] as Location, result[1], result[2]]
+}
+
+export const useUserRatings = (id:string|number|undefined):RatingsHook => {
+  const result = useApiResponse(id ? `/location/${id}` : '')
+  return [result[0] as Rating[], result[1], result[2]]
 }

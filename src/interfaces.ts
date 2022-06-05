@@ -139,3 +139,4 @@ export interface ApiDataResponse {
 
 export interface JobHook extends Array<Job|boolean|Error|null>{0:Job|null, 1:boolean, 2:Error|null}
 export interface UserHook extends Array<User|boolean|Error|null>{0:User|null, 1:boolean, 2:Error|null}
+export interface RatingsHook extends Array<Array<Rating>|boolean|Error|null>{0:Array<Rating>|null, 1:boolean, 2:Error|null}
