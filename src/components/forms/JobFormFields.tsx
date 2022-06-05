@@ -4,6 +4,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useTranslation } from "react-i18next";
 import { useCurrentUser } from "../../custom_hooks/user";
 import { Location } from "../../interfaces";
+import { getUserLocation } from "../../shared";
 import TimeRangePicker from "../common/TimeRangePicker";
 import SelectCol from "./SelectCol";
 
@@ -21,27 +22,27 @@ export const JobFormFields = ({ formik }: PropDefs) => {
 
   const checkboxChange = (e: ChangeEvent) => {
     const target = e.target as HTMLInputElement;
-    formik.setFieldValue(target.name, target.checked);
+    setFieldValue(target.name, target.checked);
   };
 
   const updateValue = (e: ChangeEvent) => {
     const target = e.target as HTMLInputElement;
-    formik.setFieldValue(target.name, target.value);
+    setFieldValue(target.name, target.value);
   };
 
   const updateNumericValue = (e: ChangeEvent) => {
     const target = e.target as HTMLInputElement;
-    formik.setFieldValue(target.name, parseInt(target.value));
+    setFieldValue(target.name, parseInt(target.value));
   };
 
   return (
     <React.Fragment>
-      <Row>
+      <Row className="mb-3">
         <Col sm={6}>
           {t("job.description")}
           <br />
           <textarea
-            rows={4}
+            rows={8}
             defaultValue={values.description}
             name={"description"}
             className="form-control"
@@ -53,6 +54,7 @@ export const JobFormFields = ({ formik }: PropDefs) => {
             name="location"
             onChange={updateValue}
             className="form-control"
+            value={values.location}
           >
             {user?.locations?.map((loc: Location) => (
               <option value={loc.id}>
@@ -65,15 +67,15 @@ export const JobFormFields = ({ formik }: PropDefs) => {
           <TimeRangePicker formik={formik} />
         </Col>
       </Row>
-      <Row>
+      <Row className="mb-3">
         {SHORT_FIELDS.map((sf: string, inx: number): ReactElement => {
           return <SelectCol updateValue={updateNumericValue} field={sf} key={inx} />;
         })}
-
         <SelectCol updateValue={updateNumericValue} field="pay_rate" max={100} />
-
+      </Row>
+      <Row className="mb-3">
         <Col sm={3}>
-          <label htmlFor="smoker">Smoker</label>
+          <label htmlFor="smoker">Raucher</label>
           <input
             type="checkbox"
             name="smoker"

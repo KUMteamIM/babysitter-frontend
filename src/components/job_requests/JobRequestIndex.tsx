@@ -17,13 +17,15 @@ export const JobRequestIndex = () => {
   const result = useApiResponse(`/job_requests`);
 
   const jobRequestAccordion = () => {
-    const entries = result[0];
+    const entries = result[0] as Job[];
     if (!entries) {
       return;
     }
+
     return (
-      <Accordion defaultActiveKey="0">
+      <Accordion>
         {entries.map((job: Job, index: number): any => {
+          if(!job) return null
           return (
             <Accordion.Item eventKey={index.toString()}>
               <Accordion.Header>
@@ -40,7 +42,7 @@ export const JobRequestIndex = () => {
   };
 
   const jobRequestList = () => {
-    const entries = result[0];
+    const entries = result[0] as Job[];
     if (!entries) {
       return;
     }
@@ -58,6 +60,7 @@ export const JobRequestIndex = () => {
       result={result}
       title={t(`job_requests`)}
       icon={iconByStatus["requested"]}
+      path="/job_requests"
     >
       {currentUser?.type === "owner" ? jobRequestAccordion() : jobRequestList()}
     </ContentContainer>

@@ -15,9 +15,9 @@ export const JobItem = ({job}:PropDefs) => {
   return (
     <div className="p-2 job-request-details rowflex" style={{width: '100%'}}>
       {!!icon && (
-      <h4>
+      <h6>
         <FontAwesomeIcon icon={icon} />
-      </h4>)}
+      </h6>)}
       <div className="rowflex space-between"
         style={{ width: "100%", marginLeft: "8px" }}
       >

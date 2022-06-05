@@ -1,18 +1,14 @@
-import React from "react";
-import CommonNavbar from "@lmu-med/ci-components/dist/components/CommonNavbar";
-import logo from "../assets/logo1.png";
-import { useCurrentUser } from "./../custom_hooks/user";
-import { NavbarProfile } from "./NavbarProfile";
-import { NavbarLink } from "./NavbarLink";
 import {
-  faChild,
   faClipboardCheck,
-  faClipboardQuestion,
   faHandHoldingHeart,
   faMagnifyingGlass,
-  faPaste,
-  faStar,
 } from "@fortawesome/free-solid-svg-icons";
+import CommonNavbar from "@lmu-med/ci-components/dist/components/CommonNavbar";
+import React from "react";
+import logo from "../assets/logo1.png";
+import { useCurrentUser } from "./../custom_hooks/user";
+import { NavbarLink } from "./NavbarLink";
+import { NavbarProfile } from "./NavbarProfile";
 
 export const AppHeader = () => {
   const currentUser = useCurrentUser();
@@ -21,15 +17,11 @@ export const AppHeader = () => {
     <header>
       <CommonNavbar logo={logo}>
         <ul className="navbar-links">
-          <NavbarLink
-            icon={faMagnifyingGlass}
-            title="listings"
-            path="/listings"
-          />
+          <NavbarLink icon={faMagnifyingGlass} title="listings" path="/jobs" />
           <NavbarLink
             icon={faClipboardCheck}
             title="bookings"
-            path="/bookings"
+            path="/jobs/booked"
           />
           <NavbarLink icon={faHandHoldingHeart} title="offers" path="/offers" />
         </ul>

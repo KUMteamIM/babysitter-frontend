@@ -5,7 +5,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Job, JobDetails } from "../../interfaces";
+import { useLocation } from "../../custom_hooks/shared";
+import { Job, JobDetails, Location } from "../../interfaces";
 import {
   displayDateDayMonth, displayHourMinute,
   getDisplayName,
@@ -20,7 +21,9 @@ interface PropDefs {
 
 export const JobDetail = ({ job }: PropDefs) => {
   const [t] = useTranslation();
-  const [jobDetails, setJobDetails] = useState<JobDetails>();
+  const [jobDetails, setJobDetails] = useState<JobDetails|null>(null);
+  const locationData = useLocation(job ? job.id : null)
+  const location  = locationData[0] as Location
 
   useEffect(() => {
     if (!job) return;
@@ -35,6 +38,10 @@ export const JobDetail = ({ job }: PropDefs) => {
     <div className="job-detail p-3 rowflex">
       <div style={{ width: "49%" }}>
         <div>
+          <span className="small">{t("date")}</span>
+          <h3>{displayDateDayMonth(jobDetails.start_time)}</h3>
+        </div>
+        <div>
           <span className="small">
             {t("start_time")} - {t("end_time")}
           </span>
@@ -47,12 +54,12 @@ export const JobDetail = ({ job }: PropDefs) => {
           </h3>
         </div>
         <div>
-          <span className="small">{t("date")}</span>
-          <h3>{displayDateDayMonth(jobDetails.start_time)}</h3>
-        </div>
-        <div>
           <span className="small">{t("kids")}</span>
           <h3>{jobDetails.total_kids}</h3>
+        </div>
+        <div>
+          <span className="small">{t("job.description")}</span>
+          <p>{job?.description}</p>
         </div>
       </div>
       <div>
@@ -60,13 +67,13 @@ export const JobDetail = ({ job }: PropDefs) => {
           <span className="small">{t("name")}</span>
           <h3>{getDisplayName(job?.owner)}</h3>
         </div>
-        {!!job?.location && (
+        {location && (
           <div>
             <span className="small">{t("address")}</span>
             <h3>
-              {job.location.street}
+              {location.street}
               <br />
-              {job.location.zip} {job.location.city}
+              {location.zip} {location.city}
             </h3>
           </div>
         )}

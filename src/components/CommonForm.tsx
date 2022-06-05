@@ -7,6 +7,7 @@ import { FormikErrorList } from "./FormikErrorList";
 import CommonSpinner from "@lmu-med/ci-components/dist/components/CommonSpinner";
 import { LabeledRow } from "./LabeledRow";
 import { AxiosResponse } from "axios";
+import { ApiResponse } from "../interfaces";
 
 const DEFAULT_INITIAL_VALUES = { first_name: "", last_name: "", email: "" };
 
@@ -20,12 +21,6 @@ interface PropDefs {
   children?: any,
   encType?: string,
   onUpdate?: Function,
-}
-
-interface ApiResponse {
-  status: number,
-  message: string,
-  errors?: string[]
 }
 
 /**

@@ -5,7 +5,7 @@ import { Button } from "react-bootstrap";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router";
-import { useApiResponse } from "../../custom_hooks/shared";
+import { useApiResponse, useJob } from "../../custom_hooks/shared";
 import { useCurrentUser } from "../../custom_hooks/user";
 import { Job } from "../../interfaces";
 import { jobValidationSchema } from "../../validationSchemas";
@@ -36,7 +36,7 @@ export const JobListingEditor = () => {
   const [sending, setSending] = useState<boolean>(false);
 
   const [job, setJob] = useState<Job | null>(null);
-  const [result, loading, error] = useApiResponse(
+  const [result] = useJob(
     id !== "new" && id !== undefined ? `/jobs/${id}` : ""
   );
 
@@ -66,7 +66,7 @@ export const JobListingEditor = () => {
 
   useEffect(() => {
     if (id !== "new") {
-      if (result?.length) setJob(result[0]);
+      if (result) setJob(result);
     } else {
       if (user) setJob({ ...initialJobValues, owner: user });
     }

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ax from "../axios";
-import { ApiHook, Job, User } from "../interfaces";
+import { ApiHook, Job, JobHook, User, UserHook } from "../interfaces";
 
 export const useApiResponse = (path: string, method: string = 'get', params: any = null): ApiHook => {
   const [response, setResponse] = useState<any>(null)
@@ -41,22 +41,22 @@ export const useApiResponse = (path: string, method: string = 'get', params: any
   return [response, loading, error]
 }
 
-export const useUser = (id:string|number|undefined):ApiHook => {
+export const useUser = (id:string|number|undefined):UserHook => {
   const result = useApiResponse(id ? `users/${id}` : '')
   if(result[0] && result[0].hasOwnProperty('data')) {
     const giveAttribute: any = result[0]
     return [giveAttribute.data as User, result[1], result[2]]
   }
-  return result
+  return [null, result[1], result[2]]
 }
 
-export const useJob = (id:string|number|undefined):ApiHook => {
+export const useJob = (id:string|number|undefined):JobHook => {
   const result = useApiResponse(id ? `/jobs/${id}` : '')
   return [result[0] as Job, result[1], result[2]]
 }
 
 export const useUserJobs = (id:string|number|undefined, params: any = null):ApiHook => {
-  const result = useApiResponse(id ? `jobs` : '', 'get', { user_id: id, status: 'booked' })
+  const result = useApiResponse(id ? `jobs` : '', 'get', { ...params, user_id: id })
   return [result[0] as Job[], result[1], result[2]]
 }
 

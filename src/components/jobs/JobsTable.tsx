@@ -18,6 +18,7 @@ export const JobsTable = ({ status, requestParams }: PropDefs) => {
   const [t] = useTranslation();
   const [reqParams, setReqParams] = useState<RequestParams | null>(null);
   const result = useApiResponse("jobs", "get", reqParams);
+  const jobs = result[0] as Job[]
 
   useEffect(() => {
     let nrp: RequestParams = { limit: 8 };
@@ -30,9 +31,9 @@ export const JobsTable = ({ status, requestParams }: PropDefs) => {
   }, [requestParams]);
 
   const buildList = (): Array<any> => {
-    if (result[0] && result[0].length) {
+    if (jobs && jobs.length) {
       let lastMonth: Date = new Date("01-01-2000")
-      return result[0]
+      return jobs
         .sort((a: Job, b: Job) => {
           return a.start_time > b.start_time ? -1 : 1;
         })

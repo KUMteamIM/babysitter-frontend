@@ -1,10 +1,9 @@
 import { faEdit, faUserTag } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useEffect, useState } from "react";
-import { Col, Row } from "react-bootstrap";
+import React from "react";
+import { Col } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
-import { useApiResponse } from "../../custom_hooks/shared";
+import { useJob, useUser } from "../../custom_hooks/shared";
 import { useCurrentUser } from "../../custom_hooks/user";
 import { Job } from "../../interfaces";
 import { iconByStatus } from "../../shared";
@@ -15,18 +14,15 @@ import { UserDetails } from "../user/UserDetails";
 import { JobDetail } from "./JobDetail";
 
 export const JobView = () => {
-  const [job, setJob] = useState<Job | null>(null);
   const { id } = useParams();
-  const result = useApiResponse(`/jobs/${id}`);
+  const jobResult = useJob(id)
+  const [job] = jobResult
+
   // TODO: when owner, show taker
   // TODO: when taker, show owner
-  const userDetails = useApiResponse(job?.owner?.id ? `/users/${job.owner.id}` : '');
+  const [user] = useUser(job?.owner?.id);
   const [t] = useTranslation();
   const currentUser = useCurrentUser();
-
-  useEffect(() => {
-    if (result[0]) setJob(result[0]);
-  }, [result]);
 
   // TODO: show taker details when currentUser === owner and status === booked
   const amOwner = job?.owner?.id.toString() === currentUser?.id.toString();
@@ -42,7 +38,7 @@ export const JobView = () => {
       )}
       <Col>
         <ContentContainer
-          result={result}
+          result={jobResult}
           title={t("listing")}
           icon={job && iconByStatus[job?.status]}
         >
@@ -53,7 +49,9 @@ export const JobView = () => {
       </Col>
       <Col>
         <ContentContainer title={t("offered_by")} icon={faUserTag}>
-          <UserDetails user={userDetails[0]?.data} />
+          {user && (
+            <UserDetails user={user} />
+          )}
         </ContentContainer>
       </Col>
     </>

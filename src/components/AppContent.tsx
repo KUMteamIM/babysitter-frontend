@@ -25,9 +25,9 @@ export const AppContent = () => {
           {!!currentUser ? (
             <>
               <Route path="/login" element={<LoginForm />}></Route>
-              <Route path="/bookings" element={<Bookings />} />
-              <Route path="/listings/new" element={<JobListingEditor />} />
-              <Route path="/listings" element={<JobListings />} />
+              <Route path="/jobs/booked" element={<Bookings />} />
+              <Route path="/jobs/new" element={<JobListingEditor />} />
+              <Route path="/jobs" element={<JobListings />} />
               <Route path="/jobs/:id" element={<JobView />} />
               {/* <Route path="/requests/:id" element={<JobRequestShow />} /> */}
               <Route path="/requests" element={<JobRequestIndex />} />
