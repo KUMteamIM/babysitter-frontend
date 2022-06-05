@@ -9,6 +9,7 @@ interface PropDefs {
   icon?: IconProp;
   children?: any;
   title: string;
+  createPath?: string;
   path?: string;
   result?: any;
   className: string
@@ -19,6 +20,7 @@ const ContentContainer = ({
   title,
   children,
   path,
+  createPath,
   result,
   className
 }: PropDefs) => {
@@ -26,7 +28,7 @@ const ContentContainer = ({
 
   return (
     <Col className={`content-container ${className}`}>
-      <IconHeader icon={icon} title={title} path={path} />
+      <IconHeader icon={icon} title={title} path={path} createPath={createPath} />
       {error && <Alert variant="danger">{error.message}</Alert>}
       {loading ? (
         <CommonSpinner />

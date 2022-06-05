@@ -20,7 +20,7 @@ export const Home = () => {
       <>
         <Row>
           {bookedJobs && bookedJobs[0] ? (
-            <ContentContainer result={bookedJobs} title={t('next_bookings')}>
+            <ContentContainer result={bookedJobs} title={t('next_bookings')} path="/jobs?status=booked">
               <JobRow data={bookedJobs[0]} />
             </ContentContainer>
           ) : null }
@@ -28,7 +28,7 @@ export const Home = () => {
         </Row>
         {jobData && jobData[0] ? (
           <Row>
-            <ContentContainer result={jobData} title={t('my_listings')}>
+            <ContentContainer result={jobData} title={t('my_listings')} path="/jobs" createPath="/jobs/new">
               <JobRow data={jobData[0]} />
             </ContentContainer>
           </Row>
