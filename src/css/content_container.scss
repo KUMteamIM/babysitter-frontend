@@ -9,10 +9,19 @@ body.lmu-klinikum {
       }
     }
 
-    h2 a {
-      font-size: .8rem;
+    .text-right {
       float: right;
-      text-decoration: underline;
+      font-size: .8rem;
+      a {
+        margin-left: 16px;
+        padding: 4px;
+      }
+      a:hover {
+        text-decoration: underline;
+        background-color: $light-grey;
+        border-radius: 4px;
+        padding: 4px;
+      }
     }
     margin-bottom: 2em;
   }

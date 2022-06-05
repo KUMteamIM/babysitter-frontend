@@ -17,12 +17,7 @@ export const NavbarLink = ({ icon, title, path }: PropDefs) => {
   const location = useLocation();
 
   let classes = "navbar-link";
-  if (
-    (location.pathname.startsWith(path) && path.length > 1) ||
-    location.pathname == path
-  ) {
-    classes += " active";
-  }
+  if (location.pathname === path) classes += " active";
 
   return (
     <li className={classes}>

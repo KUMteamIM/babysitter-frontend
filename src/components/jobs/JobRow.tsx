@@ -1,7 +1,6 @@
 import React from "react";
 import { Row } from "react-bootstrap";
 import { Job } from "../../interfaces";
-import ContentContainer from "../ContentContainer";
 import { JobCol } from "./JobCol";
 
 interface PropDefs {
@@ -13,9 +12,7 @@ export const JobRow = ({ data }: PropDefs) => {
 
   return (
     <Row className="p-3">
-      {data.map((job: Job, index: number) => (
-        <JobCol job={job} key={index.toString()} />
-      ))}
+      {data.map((job: Job, index: number) => <JobCol job={job} key={index.toString()} />)}
     </Row>
   );
 };

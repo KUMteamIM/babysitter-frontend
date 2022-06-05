@@ -3,12 +3,13 @@ import {
   faClipboardQuestion,
   faGhost,
   faHistory, faPencil,
+  faPersonCircleQuestion,
   faSearch,
   faXmark
 } from "@fortawesome/free-solid-svg-icons";
 import { getI18n } from "react-i18next";
 import * as Yup from "yup";
-import { GeoCode, Job, JobDetails, User } from "./interfaces";
+import { GeoCode, Job, JobDetails, Location, User } from "./interfaces";
 
 /**
  * @param {string} geocode | comma-seperated latitude and longitude
@@ -57,19 +58,6 @@ export const getDisplayName = (user: User|undefined|null):string => {
  */
 export function durationInMs(start:Date, end:Date):number {
   return end.getTime() - start.getTime();
-}
-
-/**
- * checks max allowed duration in Hour between two dates
- * @param {date} start
- * @param {date} end
- * @param {number} durationHour
- * @returns boolean
- */
-export function checkMaxDurationInHour(start:Date, end:Date, durationHour:number):boolean {
-  return (
-      durationInMs(start, end) < durationHour*60*60*1000
-  );
 }
 
 /**
@@ -136,15 +124,16 @@ export const passwordValidationSchema = (t:any):any => Yup.object().shape({
 });
 
 export const getJobDetails = (job:Job):JobDetails => {
-  const milliseconds = durationInMs(job.start_time, job.end_time)
+  const endDate = typeof job.end_time === 'string' ? new Date( job.end_time) :  job.end_time
+  const startDate = typeof job.start_time === 'string' ? new Date( job.start_time) :  job.start_time
+
+  const milliseconds = durationInMs(startDate, endDate)
   const hours = Math.floor(milliseconds / 1000 / 60 / 60)
   const minutes = new Date(milliseconds - (hours * 60 * 60 * 1000)).getMinutes()
   const total_kids: number = job.infant_count + job.toddler_count + job.school_age_count
   const total_pay = Math.ceil((hours + (minutes/60)) * job.pay_rate)
 
-console.log(hours, minutes)
-
-  return { end_time: job.end_time, start_time: job.start_time, hours, minutes, milliseconds, total_kids, total_pay, pay_rate: job.pay_rate }
+  return { end_time: endDate, start_time: startDate, hours, minutes, milliseconds, total_kids, total_pay, pay_rate: job.pay_rate }
 }
 
 const defaultDateOptions = {
@@ -224,7 +213,7 @@ export const caluclateDistance = (pointA:GeoCode, pointB:GeoCode):number => {
 export const iconByStatus: any = {
   booked: faClipboardCheck,
   requested: faClipboardQuestion,
-  available: faSearch,
+  available: faPersonCircleQuestion,
   complete: faHistory,
   draft: faPencil,
   canceled: faXmark,
@@ -309,3 +298,8 @@ export const compareAndCall = (currentObj:object, nextObj:object, stateUpdater: 
 export const selectMinutes: Array<number> = new Array(
   Math.round(60 / 5)
 ).fill(1).map((value, index) => index * 5);
+
+export const getUserLocation = (user:User, locationId: number):Location|undefined => {
+  let loco: Location|undefined = user.locations.find(({id}) => id === locationId)
+  return loco
+}

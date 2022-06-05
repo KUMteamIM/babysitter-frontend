@@ -13,7 +13,7 @@ i18n.use(initReactI18next).init({
         bookings: 'Buchungen',
         cancel: 'Stornieren',
         contact: 'Kontakt',
-        create_new: 'Anlegen',
+        create_new: 'Neu Anlegen',
         create_job: 'Neues Gesuch aufgeben',
         date: 'Datum',
         date_time: 'Datum & Zeit',

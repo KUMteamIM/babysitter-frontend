@@ -3,9 +3,9 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { ActionButton } from "./ActionButton"
 
-export const NewListingButton = () => {
+export const CreateJobButton = () => {
   const navigate = useNavigate()
-  return <ActionButton icon={faFileCirclePlus} title="create_job" onClick={() => navigate('/listings/new')} />
+  return <ActionButton icon={faFileCirclePlus} title="create_job" onClick={() => navigate('/jobs/new')} />
 }
 
-export default NewListingButton
+export default CreateJobButton
