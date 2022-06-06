@@ -9,18 +9,20 @@ interface PropDefs {
   updateValue: any; // TODO: proper signature for function
   max?: number;
   start?: number;
+  value?: number
 }
 
-const SelectCol = ({ field, updateValue, start, max }: PropDefs) => {
+const SelectCol = ({ field, updateValue, start, max, value = 0 }: PropDefs) => {
   const [t] = useTranslation();
 
   return (
     <Col sm={3} key={field}>
-      <label htmlFor={field}>{t("job." + field)}</label>
+      <b><label htmlFor={field}>{t("job." + field)}</label></b>
       <select
         name={field}
         className="form-control numbers"
         onChange={updateValue}
+        value={value}
       >
         {numericOptions(start, max).map((nr: number) => (
           <NumberOption key={nr.toString()} value={nr} prependZero={false} />

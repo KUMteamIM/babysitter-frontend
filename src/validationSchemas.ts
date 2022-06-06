@@ -22,6 +22,7 @@ export const jobValidationSchema = () => {
           message: getI18n().t("job.validation.same_day"),
         });
       }),
-    location: Yup.string().required()
+    location: Yup.string().required(),
+    owner: Yup.string().required()
     })
 };

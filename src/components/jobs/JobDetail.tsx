@@ -1,8 +1,11 @@
 import { faEnvelope } from "@fortawesome/free-regular-svg-icons";
 import {
+  faDog,
   faMobilePhone,
-  faPaperPlane
+  faPaperPlane,
+  faSmokingBan
 } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "../../custom_hooks/shared";
@@ -22,7 +25,7 @@ interface PropDefs {
 export const JobDetail = ({ job }: PropDefs) => {
   const [t] = useTranslation();
   const [jobDetails, setJobDetails] = useState<JobDetails|null>(null);
-  const locationData = useLocation(job ? job.id : null)
+  const locationData = useLocation(job?.location?.id ? job.location.id : null)
   const location  = locationData[0] as Location
 
   useEffect(() => {
@@ -60,6 +63,20 @@ export const JobDetail = ({ job }: PropDefs) => {
         <div>
           <span className="small">{t("job.description")}</span>
           <p>{job?.description}</p>
+        </div>
+        <div>
+          {!job?.smoker && (
+            <span className="small">
+              <FontAwesomeIcon icon={faSmokingBan} />
+              &nbsp;Nur Nichtraucher<br />
+            </span>
+          )}
+          {!!job?.has_pets && (
+            <span className="small">
+              <FontAwesomeIcon icon={faDog} />
+              &nbsp;Haustiere
+            </span>
+          )}
         </div>
       </div>
       <div>

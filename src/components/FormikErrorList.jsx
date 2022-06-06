@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { Alert } from "react-bootstrap";
 export const FormikErrorList = ({ errors }) => {
   const errorEntry = (item, index) => {
     const [key, value] = item;
@@ -9,7 +10,11 @@ export const FormikErrorList = ({ errors }) => {
 
   if (!entries.length) return null;
 
-  return <ul className="formik-error-list">{entries.map(errorEntry)}</ul>;
+  return (
+    <Alert variant="danger">
+      <ul>{entries.map(errorEntry)}</ul>
+    </Alert>
+  );
 };
 
 FormikErrorList.defaultProps = {

@@ -18,7 +18,7 @@ export const JobFormFields = ({ formik }: PropDefs) => {
   const [t] = useTranslation();
   const { values, setFieldValue } = formik;
 
-  const user = useCurrentUser();
+  const currentUser = useCurrentUser();
 
   const checkboxChange = (e: ChangeEvent) => {
     const target = e.target as HTMLInputElement;
@@ -36,11 +36,10 @@ export const JobFormFields = ({ formik }: PropDefs) => {
   };
 
   return (
-    <React.Fragment>
+    <div className="form-group p-3">
       <Row className="mb-3">
         <Col sm={6}>
-          {t("job.description")}
-          <br />
+          <b>{t("job.description")}</b><br/>
           <textarea
             rows={8}
             defaultValue={values.description}
@@ -49,19 +48,22 @@ export const JobFormFields = ({ formik }: PropDefs) => {
             onChange={formik.handleChange}
           />
           <br />
-          <p>{t("job.location")}</p>
+          <b>{t("job.location")}</b><br/>
           <select
             name="location"
             onChange={updateValue}
-            className="form-control"
+            className="form-control mb-3"
             value={values.location}
           >
-            {user?.locations?.map((loc: Location) => (
+            {currentUser?.locations?.map((loc: Location) => (
               <option value={loc.id}>
                 {loc.street}, {loc.zip} {loc.city}
               </option>
             ))}
           </select>
+  
+          <SelectCol updateValue={updateNumericValue} field="pay_rate" max={100} value={values.pay_rate} />
+
         </Col>
         <Col sm={6}>
           <TimeRangePicker formik={formik} />
@@ -69,31 +71,36 @@ export const JobFormFields = ({ formik }: PropDefs) => {
       </Row>
       <Row className="mb-3">
         {SHORT_FIELDS.map((sf: string, inx: number): ReactElement => {
-          return <SelectCol updateValue={updateNumericValue} field={sf} key={inx} />;
+          return <SelectCol updateValue={updateNumericValue} field={sf} key={inx.toString()} value={values[sf]} />;
         })}
-        <SelectCol updateValue={updateNumericValue} field="pay_rate" max={100} />
       </Row>
       <Row className="mb-3">
         <Col sm={3}>
-          <label htmlFor="smoker">Raucher</label>
+          <b>
           <input
-            type="checkbox"
-            name="smoker"
-            onChange={checkboxChange}
-            defaultChecked={values.smoker}
+          id="smoker"
+          type="checkbox"
+          name="smoker"
+          onChange={checkboxChange}
+          defaultChecked={values.smoker}
           />
+          <label htmlFor="smoker">Raucher</label>
+          </b>
         </Col>
 
         <Col sm={3}>
-          <label htmlFor="has_pets">Haustiere</label>
+          <b>
           <input
+            id="has_pets"
             type="checkbox"
             name="has_pets"
             onChange={checkboxChange}
-            defaultChecked={values.has_pets}
+            defaultChecked={!!values.has_pets}
           />
+          <label htmlFor="has_pets">Haustiere</label>
+          </b>
         </Col>
       </Row>
-    </React.Fragment>
+    </div>
   );
 };

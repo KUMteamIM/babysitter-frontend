@@ -63,6 +63,7 @@ export const useUserJobs = (id:string|number|undefined, params: any = null):ApiH
 }
 
 export const useLocation = (id:string|number|null):ApiHook => {
+  console.log('useLocation', id)
   const result = useApiResponse(id ? `/location/${id}` : '')
   return [result[0] as Location, result[1], result[2]]
 }

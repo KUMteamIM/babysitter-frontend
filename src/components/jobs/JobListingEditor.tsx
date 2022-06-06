@@ -1,11 +1,14 @@
-import { faEye, faFileCirclePlus } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCheck,
+  faEye,
+  faFileCirclePlus,
+} from "@fortawesome/free-solid-svg-icons";
 import { useFormik } from "formik";
 import { Button } from "react-bootstrap";
-
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router";
-import { useApiResponse, useJob } from "../../custom_hooks/shared";
+import { useJob } from "../../custom_hooks/shared";
 import { useCurrentUser } from "../../custom_hooks/user";
 import { Job } from "../../interfaces";
 import { jobValidationSchema } from "../../validationSchemas";
@@ -14,14 +17,18 @@ import { JobFormFields } from "../forms/JobFormFields";
 import { JobDetail } from "./JobDetail";
 import CommonSpinner from "@lmu-med/ci-components/dist/components/CommonSpinner";
 import { FormikErrorList } from "../FormikErrorList";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+const today = new Date();
+today.setHours(today.getHours() + 1, 0, 0, 0);
 
 const initialJobValues: Job = {
   smoker: false,
   infant_count: 0,
   toddler_count: 0,
   school_age_count: 0,
-  start_time: new Date(),
-  end_time: new Date(),
+  start_time: today,
+  end_time: new Date(today.getTime() + 60 * 60 * 1000),
   status: "draft",
   id: "0",
   has_pets: false,
@@ -31,7 +38,7 @@ const initialJobValues: Job = {
 
 export const JobListingEditor = () => {
   const [t] = useTranslation();
-  const user = useCurrentUser();
+  const currentUser = useCurrentUser();
   const { id } = useParams();
   const [sending, setSending] = useState<boolean>(false);
 
@@ -49,8 +56,6 @@ export const JobListingEditor = () => {
       // apiEndpoint(values).then(onApiResult).catch(onApiResult);
     },
     validate: (val) => {
-      // if(onUpdate) onUpdate(val)
-      console.log("updating?");
       setJob(val as Job);
     },
   });
@@ -68,9 +73,15 @@ export const JobListingEditor = () => {
     if (id !== "new") {
       if (result) setJob(result);
     } else {
-      if (user) setJob({ ...initialJobValues, owner: user });
+      console.log('has user', currentUser)
+      if (currentUser) {
+        setJob({ ...initialJobValues, owner: currentUser });
+        formik.setFieldValue("owner", currentUser)
+      } else {
+        console.log('missing user')
+      }
     }
-  }, [id, user, result]);
+  }, [id, currentUser, result, formik]);
 
   return (
     <>
@@ -79,28 +90,33 @@ export const JobListingEditor = () => {
         title={t("new_listing")}
         className="col-sm-6"
       >
-        <div className=" form-group p-3">
-          <JobFormFields formik={formik} />
-        </div>
+        <JobFormFields formik={formik} />
       </ContentContainer>
-      <ContentContainer icon={faEye} title={t("preview")} className="col-sm-6">
-        <JobDetail job={job} />
-        <div className="p-3 rowflex align-end">
-          <FormikErrorList errors={formik.errors} />
-
-          {sending ? (
-            <CommonSpinner />
-          ) : (
-            <Button
-              variant="primary"
-              type="submit"
-              disabled={Object.keys(formik.errors).length > 0}
-            >
-              {t("job.submit")}
-            </Button>
-          )}
-        </div>
-      </ContentContainer>
+      {job && (
+        <ContentContainer
+          icon={faEye}
+          title={t("preview")}
+          className="col-sm-6"
+        >
+          <JobDetail job={job} />
+          <div className="p-3">
+            <FormikErrorList errors={formik.errors} />
+            {sending ? (
+              <CommonSpinner />
+            ) : (
+              <Button
+                variant="primary"
+                type="submit"
+                disabled={Object.keys(formik.errors).length > 0}
+              >
+                {t("job.submit")}
+                &nbsp;
+                <FontAwesomeIcon icon={faCheck} />
+              </Button>
+            )}
+          </div>
+        </ContentContainer>
+      )}
     </>
   );
 };
