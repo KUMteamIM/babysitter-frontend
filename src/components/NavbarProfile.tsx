@@ -1,13 +1,17 @@
 import { faSignInAlt, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { useCurrentUser } from "./../custom_hooks/user";
+import { logOut } from "../api/login";
+import { useCurrentUser } from "../custom_hooks/user";
+import { User } from "../interfaces";
 import { ActionButton } from "./ActionButton";
 import TinyProfile from "./TinyProfile";
 
 export const NavbarProfile = () => {
-  const currentUser = useCurrentUser();
+  const currentUser: User|null = useCurrentUser();
   const [t] = useTranslation();
+
+  const triggerLogout = () => logOut();
 
   return (
     <div className="rowflex navbar-profile">
@@ -23,6 +27,7 @@ export const NavbarProfile = () => {
             icon={faSignOutAlt}
             className="sel-distinct"
             title="sign_out"
+            onClick={triggerLogout}
           />
         </>
       ) : (

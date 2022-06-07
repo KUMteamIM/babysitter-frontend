@@ -40,6 +40,8 @@ export const Home = () => {
   } else {
     return (
       <>
+      <p>Welcome, please find open positions or info about your upcoming bookings here</p>
+        <JobsTable status="available" />
         <JobsTable status="booked" />
       </>
     );

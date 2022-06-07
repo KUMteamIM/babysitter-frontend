@@ -83,10 +83,11 @@ export type AvailabilityStatus = 'not_available' | 'available' | 'on_request'
 
 export interface JobRequest {
   id: number
-  status: string
-  type: string
+  status: JobRequestStatus
+  type: JobRequestType
   candidate: User
   job: Job
+  freetext: string
 }
 
 export interface Qualification {

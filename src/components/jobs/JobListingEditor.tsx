@@ -1,11 +1,12 @@
 import {
-  faCheck,
   faEye,
-  faFileCirclePlus,
+  faFileCirclePlus
 } from "@fortawesome/free-solid-svg-icons";
+import CommonSpinner from "@lmu-med/ci-components/dist/components/CommonSpinner";
+import { AxiosPromise } from "axios";
 import { useFormik } from "formik";
-import { Button } from "react-bootstrap";
 import React, { useEffect, useState } from "react";
+import { Button } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router";
 import { useJob } from "../../custom_hooks/shared";
@@ -13,11 +14,9 @@ import { useCurrentUser } from "../../custom_hooks/user";
 import { Job } from "../../interfaces";
 import { jobValidationSchema } from "../../validationSchemas";
 import ContentContainer from "../ContentContainer";
+import { FormikErrorList } from "../FormikErrorList";
 import { JobFormFields } from "../forms/JobFormFields";
 import { JobDetail } from "./JobDetail";
-import CommonSpinner from "@lmu-med/ci-components/dist/components/CommonSpinner";
-import { FormikErrorList } from "../FormikErrorList";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const today = new Date();
 today.setHours(today.getHours() + 1, 0, 0, 0);
@@ -46,6 +45,7 @@ export const JobListingEditor = () => {
   const [result] = useJob(
     id !== "new" && id !== undefined ? `/jobs/${id}` : ""
   );
+  const [apiResponse, setApiResponse] = useState<AxiosPromise|null>(null) 
 
   const formik = useFormik({
     initialValues: initialJobValues,
@@ -73,12 +73,9 @@ export const JobListingEditor = () => {
     if (id !== "new") {
       if (result) setJob(result);
     } else {
-      console.log('has user', currentUser)
       if (currentUser) {
         setJob({ ...initialJobValues, owner: currentUser });
         formik.setFieldValue("owner", currentUser)
-      } else {
-        console.log('missing user')
       }
     }
   }, [id, currentUser, result, formik]);
@@ -110,8 +107,6 @@ export const JobListingEditor = () => {
                 disabled={Object.keys(formik.errors).length > 0}
               >
                 {t("job.submit")}
-                &nbsp;
-                <FontAwesomeIcon icon={faCheck} />
               </Button>
             )}
           </div>
